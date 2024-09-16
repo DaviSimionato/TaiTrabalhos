@@ -1,0 +1,31 @@
+* {
+    font-family: "Poppins";
+}
+span {
+    user-select: none;
+}
+.ifill {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  .vagas * {
+    scrollbar-width: none;
+    scrollbar-color: #1ea9a0 #ffffff;
+  }
+  /* Chrome, Edge, and Safari */
+  .vagas *::-webkit-scrollbar {
+    width: 0px;
+  }
+  .vagas *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  .vagas *::-webkit-scrollbar-thumb {
+    background-color: #1ea9a0;
+    border-radius: 0px;
+    border: 0px none #ffffff;
+  }

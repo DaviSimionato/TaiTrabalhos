@@ -1,0 +1,26 @@
+let cidadesTeste = document.querySelectorAll('.wikitable td a');
+let cidades = [];
+cidadesTeste.forEach((a)=> {
+    if (a.classList.length == 0 && isNaN(parseInt(a.textContent))) {
+      cidades.push(a.textContent);      
+    }
+})
+
+console.log(cidades);
+
+// na página "Regiões administrativas do Distrito Federal (Brasil)" rodar este script:
+
+let cidadesTeste = document.querySelectorAll('.wikitable td a');
+let cidades = [];
+let cidadesDF = [];
+cidadesTeste.forEach((a)=> {
+    if (a.classList.length == 0 && isNaN(parseInt(a.textContent))) {
+      cidades.push(a.textContent);      
+    }
+});
+cidades.forEach((c,i)=> {
+    if (!c.startsWith("[")) {
+        cidadesDF.push(c);
+    }
+});
+console.log(cidadesDF);
