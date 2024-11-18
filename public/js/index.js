@@ -21,21 +21,21 @@ String.prototype.padronizarPesquisa = function() {
 //     }
 // });
 
-jQuery(()=> {
-    $.ajax({
-        url: `/api/cidades/SP`,
-        method: "GET",
-        success: (data)=> {
-            let cidades = data.cidades;
-            $(".vagasMaisProcuradas .loading").hide();
-            for(let i = 0;i<10;i++) {
-                let cidade = cidades[i];
-                let element = /*html*/
-                `<p class="font-medium text-lg my-1 text-center cidade">
-                    ${cidade}
-                </p>`;
-                $(".vagasMaisProcuradas").append(element);
-            }
-        },
-    });
-});
+// jQuery(()=> {
+//     $.ajax({
+//         url: `/api/cidades/SP`,
+//         method: "GET",
+//         success: (data)=> {
+//             let cidades = data.cidades;
+//             $(".vagasMaisProcuradas .loading").hide();
+//             for(let i = 0;i<10;i++) {
+//                 let cidade = cidades[i];
+//                 let element = /*html*/
+//                 `<p class="font-medium text-lg my-1 text-center cidade">
+//                     ${cidade}
+//                 </p>`;
+//                 $(".vagasMaisProcuradas").append(element);
+//             }
+//         },
+//     });
+// });

@@ -79,8 +79,8 @@
     </div>
     @auth
     @if (request()->user()->name == null || request()->user()->user_name == null)
-        <div class="flex items-center justify-center bg-tt border-t">
-            <a href="/user/config" class="text-base font-semibold p-2 text-white select-none hover:underline">
+        <div class="flex items-center justify-center bg-tt border-t finalizarConta">
+            <a href="/user/profile" class="text-base font-semibold p-2 text-white select-none hover:underline">
                 Finalize a configuração da sua conta 
             </a>
         </div>

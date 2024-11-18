@@ -22,7 +22,14 @@ class User extends Authenticatable
         'email',
         'password',
         'type',
-        'cnpj'
+        'cnpj',
+        'current_situation',
+		'current_position',		
+		'company_name',
+		'city',
+		'state',		
+		'country',
+        'resume'
     ];
 
     /**

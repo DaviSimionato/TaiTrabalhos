@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\User;
+use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -76,5 +79,25 @@ class UserController extends Controller
         return response()->json([
             "message" => "success"
         ], 201);
+    }
+
+    public function profile(Request $request) {
+        $user = $request->user();
+        $user->city = City::find($user->city);
+        $user->state = State::find($user->state);
+        return view("user.profile", [
+            "user" => $user
+        ]);
+    }
+
+    public function updateResume(Request $request) {
+        $user = $request->user();
+        $userData = $request->validate([
+            // "resume" => "required|file|max:8024|mimes:pdf,docx,doc,txt"
+        ]);
+        dd($request->file("resume", $request->resume));
+        $user->resume = Storage::put("resumes/$user->id/", $request->file("resume"));
+        $user->update();
+        return redirect("/user/profile")->with("message", "Currículo atualizado!");
     }
 }

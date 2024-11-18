@@ -11,5 +11,7 @@
     </div>
     <script>
         $("header .user").remove();
+        let a = document.querySelectorAll("header a");
+        a[a.length-1].remove();
     </script>
 </x-layout>
