@@ -173,7 +173,7 @@
                         <option value="AM">Amazonas (AM)</option>
                         <option value="BA">Bahia (BA)</option>
                         <option value="CE">Ceará (CE)</option>
-                        {{-- <option value="DF">Distrito Federal (DF)</option> --}}
+                        <option value="DF">Distrito Federal (DF)</option>
                         <option value="ES">Espírito Santo (ES)</option>
                         <option value="GO">Goiás (GO)</option>
                         <option value="MA">Maranhão (MA)</option>
@@ -349,7 +349,7 @@
     function updateResume() {
         setTimeout(() => {
             btnEnviarCurriculoForm.click();
-        }, 700);
+        }, 100);
     }
     document.getElementById('state').addEventListener('change', function () {
         const state = this.value;

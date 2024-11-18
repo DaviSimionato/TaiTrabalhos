@@ -20,6 +20,7 @@ class EstadosSeeder extends Seeder
             ['state' => 'Amazonas', 'acronym' => 'AM'],
             ['state' => 'Bahia', 'acronym' => 'BA'],
             ['state' => 'Ceará', 'acronym' => 'CE'],
+            ['state' => 'Distrito Federal', 'acronym' => 'DF'],
             ['state' => 'Espírito Santo', 'acronym' => 'ES'],
             ['state' => 'Goiás', 'acronym' => 'GO'],
             ['state' => 'Maranhão', 'acronym' => 'MA'],
