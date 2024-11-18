@@ -1,9 +1,8 @@
 <x-layout title="Taí Trabalhos">
     <main class="">
-        {{-- <img src="{{asset('storage\images\blank-profile-picture.png')}}" alt=""> --}}
         <section class="container">
             <h2 class="my-10 font-semibold text-tt text-5xl text-center select-none">
-                Seu próximo emprego está aqui
+                Seu próximo emprego está aqui!
             </h2>
             @guest
                 <x-login-form/>
@@ -82,7 +81,7 @@
                         Arquiteto de Software
                     </p>
                     <p class="font-medium text-xl py-2 text-center cidade">
-                        Merendeira Escolar
+                        Adestrador de ovelha
                     </p>
                 </div>
             </div>

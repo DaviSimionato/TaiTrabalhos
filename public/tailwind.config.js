@@ -4,9 +4,13 @@ export default {
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
     "./resources/**/*.vue",
+    "./resources/**/**/*.blade.php",
+    "./resources/**/**/*.js",
+    "./resources/**/**/*.vue",
     "./public/**/*.blade.php",
     "./public/**/*.js",
     "./public/**/*.vue",
+    "./public/**/*.css",
   ],
   theme: {
     container: {

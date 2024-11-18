@@ -14,11 +14,28 @@ $(".search span").on("click", ()=> {
 
 $(".acc").on("click", ()=> {
     if($(".acc-opt").hasClass("hidden")) {
+        if($(".notifications-hub").hasClass("block")) {
+            $(".notifications-hub").removeClass("block").addClass("hidden");
+            $(".notifications span").removeClass("bg-blue-200").addClass("hover:bg-gray-200");
+        }
         $(".acc-opt").removeClass("hidden").addClass("block");
         $(".acc span").addClass("bg-blue-200").removeClass("hover:bg-gray-200");
     }else {
         $(".acc-opt").removeClass("block").addClass("hidden");
         $(".acc span").removeClass("bg-blue-200").addClass("hover:bg-gray-200");
+    }
+});
+$(".notifications").on("click", ()=> {
+    if($(".notifications-hub").hasClass("hidden")) {
+        if($(".acc-opt").hasClass("block")) {
+            $(".acc-opt").removeClass("block").addClass("hidden");
+            $(".acc span").removeClass("bg-blue-200").addClass("hover:bg-gray-200");
+        }
+        $(".notifications-hub").removeClass("hidden").addClass("block");
+        $(".notifications span").addClass("bg-blue-200").removeClass("hover:bg-gray-200");
+    }else {
+        $(".notifications-hub").removeClass("block").addClass("hidden");
+        $(".notifications span").removeClass("bg-blue-200").addClass("hover:bg-gray-200");
     }
 });
 

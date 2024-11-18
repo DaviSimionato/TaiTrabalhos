@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('current_situation', ['Trabalhando', 'Buscando emprego'])->default('Buscando emprego');
             $table->string('current_position')->nullable();
-            $table->string('company_name')->nullable();
+            $table->string('company')->nullable();
             $table->foreignId('city')->nullable();
             $table->foreignId('state')->nullable();
             $table->string('country')->default('Brasil');

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Json;
+use App\Models\City;
+use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -11,14 +13,9 @@ Route::post("create-account", [UserController::class, "createAccount"])->middlew
 Route::post("login", [UserController::class, "authenticate"])->middleware("web", Json::class);
 
 Route::get("/cidades/{uf}", function($uf) {
-    $cidades = json_decode(Storage::get("cidades/$uf/cidades.txt"));
-    $estados = [];
-    foreach(Storage::allDirectories("cidades/") as $estado) {
-        $estado = substr($estado, -2);
-        array_push($estados, $estado);
-    };
+    $state = State::where("acronym", $uf)->first();
+    $cidades = City::where("state_id", $state->id)->get();
     return response()->json([
-        "estados" => $estados,
         "cidades" => $cidades
     ]);
 });

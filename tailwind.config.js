@@ -20,6 +20,7 @@ export default {
       colors: {
         tt: "#1791C8",
         ttBg: "#FDFDFD",
+        ttLight: "#2E9CCD",
         // ds: "#E8772E",
         // dsLight: "#EB8442",
         // dsBlue: "#0079E9",

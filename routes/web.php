@@ -32,6 +32,8 @@ Route::middleware("auth")->group(function () {
     Route::get("/logout", [UserController::class, "logout"]);
     Route::get("/user/profile", [UserController::class, "profile"]);
     Route::post("/user/update-resume", [UserController::class, "updateResume"]);
+    Route::get("/user/profile/delete-resume", [UserController::class, "deleteResume"]);
+    Route::post("/user/config/update-user-data", [UserController::class, "updateUserData"]);
     Route::get("/empresas", [EmpresasController::class, "teste"]);
     Route::get("/salarios", [SalariosController::class, "teste"]);
     Route::get("/para-empresas", [EmpresasController::class, "teste"]);

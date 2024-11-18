@@ -47,10 +47,31 @@
                         search
                     </span>
                 </div>
-                <div class="notifications px-3 cursor-pointer">
+                <div class="notifications px-3 cursor-pointer relative flex justify-end">
                     <span class="material-symbols-outlined hover:bg-gray-200 rounded-full p-1">
                         notifications
                     </span>
+                    <div class="absolute notifications-hub bg-white border border-[#C4C7CC] px-6 
+                    py-3 mt-10 rounded text-sm hidden w-[600px]">
+                        <div class="flex flex-col">
+                            {{-- <a href="/user/profile" class="py-1 border-b border-[#C4C7CC] 
+                            hover:bg-gray-50 rounded">
+                                Meu perfil
+                            </a>
+                            <a href="/user/profile/settings" class="py-1 border-b border-[#C4C7CC] 
+                            hover:bg-gray-50 rounded">
+                                Configurações
+                            </a>
+                            <a href="/logout" class="py-1 hover:bg-gray-50 rounded">
+                                Sair
+                            </a> --}}
+                            <div class="flex justify-center items-center">
+                                <h2 class="font-semibold text-xl opacity-75">
+                                    Nenhuma notificação
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="px-3 acc relative cursor-pointer flex justify-center">
                     <span class="material-symbols-outlined hover:bg-gray-200 rounded-full p-1 h-[32px]">
@@ -63,7 +84,7 @@
                             hover:bg-gray-50 rounded">
                                 Meu perfil
                             </a>
-                            <a href="/user/config" class="py-1 border-b border-[#C4C7CC] 
+                            <a href="/user/profile/settings" class="py-1 border-b border-[#C4C7CC] 
                             hover:bg-gray-50 rounded">
                                 Configurações
                             </a>

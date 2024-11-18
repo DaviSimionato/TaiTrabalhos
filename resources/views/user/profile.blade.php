@@ -22,7 +22,7 @@
                             Perfil
                     </div>
                     <div class="mb-5 group">
-                        <a href="user/profile/settings" class="mx-4 flex">
+                        <a href="/user/profile/settings" class="mx-4 flex">
                             <div class="border-4 rounded-sm mr-2 border-[#D7D7D7] invisible
                             group-hover:visible animate-pulse"></div>
                             <p>
@@ -74,12 +74,12 @@
                     <h2 class="font-semibold text-lg">
                         Minhas informações
                     </h2>
-                    <span class="btn-editar p-0.5 rounded-full cursor-pointer 
+                    <span class="btnEditar p-0.5 rounded-full cursor-pointer 
                     hover:bg-gray-200" title="Editar informações">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="m15.129 7.715 1.594-1.594 1.473 1.473-1.594 1.594-1.473-1.473Zm-1.06 1.06L6.523 16.32l-.235 1.55 1.756-.124 7.496-7.497-1.473-1.473Zm-9.028 7.32a1.5 1.5 0 0 1 .422-.835l10.2-10.2a1.5 1.5 0 0 1 2.12 0l1.474 1.474a1.5 1.5 0 0 1 0 2.12L9.105 18.807a1.5 1.5 0 0 1-.955.436l-3.001.211a.5.5 0 0 1-.53-.573l.422-2.784Z" fill="#00060C"></path></svg>
                     </span>
                 </div>
-                <div>
+                <div class="userData block">
                     <p class="font-semibold my-4">
                         Nome de exibição:
                         <span class="font-normal">
@@ -99,12 +99,6 @@
                         </span>
                     </p>
                     <p class="font-semibold my-4">
-                        Situação empregatícia:
-                        <span class="font-normal">
-                            {{ $user->current_situation ?? "Não definido" }}
-                        </span>
-                    </p>
-                    <p class="font-semibold my-4">
                         Cargo:
                         <span class="font-normal">
                             {{ $user->current_position ?? "Não definido" }}
@@ -114,7 +108,7 @@
                         Local:
                         <span class="font-normal">
                             {{ $user->city->name ?? "Não definido" }}
-                            , {{ $user->state->name  ?? "Não definido" }}
+                            , {{ $user->state->state  ?? "Não definido" }}
                             , {{ $user->country ?? "Não definido"}}
                         </span>
                     </p>
@@ -125,6 +119,108 @@
                         </span>
                     </p>
                 </div>
+                <form action="/user/config/update-user-data" method="post"
+                class="userDataUpdate hidden">
+                    @csrf
+                    @method("POST")
+                    <p class="font-semibold my-4">
+                        Nome de exibição:
+                        <input type="text" name="user_name" id="user_name" 
+                        class="font-normal border border-black p-1 pl-4 outline-none rounded"
+                        value="{{ $user->user_name ?? "Nome não definido" }}">
+                    </p>
+                    <p class="font-semibold my-4">
+                        Nome completo:
+                        <input type="text" name="name" id="name" 
+                        class="font-normal border border-black p-1 pl-4 outline-none rounded"
+                        value="{{ $user->name ?? "Nome não definido" }}">
+                    </p>
+                    <p class="font-semibold my-4">
+                        Situação empregatícia:
+                        <select name="current_situation" id="current_situation" 
+                        class="font-normal border border-black p-1 outline-none rounded">
+                            <option value="{{ $user->current_situation }}" selected>
+                                {{ $user->current_situation }}
+                            </option>
+                            <option value="Trabalhando">
+                                Trabalhando
+                            </option>
+                            <option value="Buscando emprego">
+                                Buscando emprego
+                            </option>
+                        </select>
+                    </p>
+                    <p class="font-semibold my-4">
+                        Cargo:
+                        <input type="text" name="current_position" id="current_position" 
+                        class="font-normal border border-black p-1 pl-4 outline-none rounded"
+                        value="{{ $user->current_position ?? "Não definido" }}">
+                    </p>
+                    <p class="font-semibold my-4 mb-0">
+                        Local:
+                    </p>
+                    <p class="ml-2 my-1 font-medium">
+                        Estado:
+                    </p>
+                    <select id="state" name="state"
+                    class="font-normal border border-black p-1 outline-none rounded ml-2">
+                        <option value="{{ $user->state->acronym ?? "" }}" class="default">
+                            {{ $user->state->state ?? "Selecione um estado" }}
+                        </option>
+                        <option value="AC">Acre (AC)</option>
+                        <option value="AL">Alagoas (AL)</option>
+                        <option value="AP">Amapá (AP)</option>
+                        <option value="AM">Amazonas (AM)</option>
+                        <option value="BA">Bahia (BA)</option>
+                        <option value="CE">Ceará (CE)</option>
+                        {{-- <option value="DF">Distrito Federal (DF)</option> --}}
+                        <option value="ES">Espírito Santo (ES)</option>
+                        <option value="GO">Goiás (GO)</option>
+                        <option value="MA">Maranhão (MA)</option>
+                        <option value="MT">Mato Grosso (MT)</option>
+                        <option value="MS">Mato Grosso do Sul (MS)</option>
+                        <option value="MG">Minas Gerais (MG)</option>
+                        <option value="PA">Pará (PA)</option>
+                        <option value="PB">Paraíba (PB)</option>
+                        <option value="PR">Paraná (PR)</option>
+                        <option value="PE">Pernambuco (PE)</option>
+                        <option value="PI">Piauí (PI)</option>
+                        <option value="RJ">Rio de Janeiro (RJ)</option>
+                        <option value="RN">Rio Grande do Norte (RN)</option>
+                        <option value="RS">Rio Grande do Sul (RS)</option>
+                        <option value="RO">Rondônia (RO)</option>
+                        <option value="RR">Roraima (RR)</option>
+                        <option value="SC">Santa Catarina (SC)</option>
+                        <option value="SP">São Paulo (SP)</option>
+                        <option value="SE">Sergipe (SE)</option>
+                        <option value="TO">Tocantins (TO)</option>
+                    </select>
+                    <p class="ml-2 my-1 font-medium">
+                        Cidade:
+                    </p>
+                    <select id="city" name="city" disabled
+                    class="font-normal border border-black p-1 outline-none rounded ml-2">
+                        <option value="{{ $user->city->id ?? "" }}" class="default">
+                            {{ $user->city->name ?? "Selecione uma cidade" }}
+                        </option>
+                    </select>
+                    <p class="font-semibold my-4">
+                        Empresa:
+                        <input type="text" name="company" id="company" 
+                        class="font-normal border border-black p-1 pl-4 outline-none rounded"
+                        value="{{ $user->company ?? "Não definido" }}">
+                    </p>
+                    <div class="flex select-none">
+                        <div class="btnCancelar p-6 bg-red-600 text-white font-semibold mx-1
+                        py-4 my-3 rounded cursor-pointer hover:bg-red-500">
+                            Cancelar
+                        </div>
+                        <button type="submit" class="btnSalvar p-6 bg-tt text-white font-semibold 
+                        mx-1 py-4 my-3 rounded hover:bg-ttLight">
+                            Salvar
+                        </button>
+                    </div>
+                </form>
             </div>
             <div class="border border-[#D7D7D7] my-6"></div>
             <div class="">
@@ -132,10 +228,17 @@
                     <h2 class="font-semibold text-lg">
                         Currículo
                     </h2>
+                    @if ($user->resume == null)
                     <p class="text-sm p-3">
                         Adicione um currículo para preencher candidaturas a 
                         vagas de forma rápida.
                     </p>
+                    @else
+                    <p class="text-sm p-3">
+                        Este é o currículo ao qual você pode utilizar para se candidatar a vagas
+                        de forma rápida.
+                    </p>
+                    @endif
                 </div>
                 @if ($user->resume == null)
                 <div class="flex items-center p-6 justify-center border-2 w-[90%] 
@@ -149,20 +252,62 @@
                         </h3>
                         <small class="small_Small__0Prbr" aria-live="polite" 
                         aria-hidden="false" data-test="resume-section-file-types">
-                            Use um arquivo PDF, DOCX, DOC ou TXT.
+                            Use um arquivo PDF, PNG, JPG ou TXT.
                         </small>
                     </div>
                 </div>
-                <form action="/user/update-resume" method="post">
+                <form action="/user/update-resume" method="post" enctype="multipart/form-data">
                     @csrf
                     @method("POST")
-                    <input accept=".pdf,.rtf,.txt,.doc,.docx" 
-                    class="hidden" id="upload-resume" type="file" name="resume"
+                    <input accept=".pdf,.png,.jpg,.jpeg,.webp,.txt" 
+                    class="invisible" id="upload-resume" type="file" name="resume"
                     onchange="updateResume()">
                     <button type="submit" class="hidden update-resume"></button>
                 </form>
                 @else
-                    
+                <div class="flex items-center p-6 border-2 w-[90%] select-none
+                border-[#222] rounded-md mx-auto my-4 mb-8 enviarCurriculo">
+                    <svg fill="#000000" width="62" height="72" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" 
+                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve"
+                    class="">
+                        <g>
+                            <path d="M245,169.144c27.118,0,49.1-21.984,49.1-49.102S272.118,70.94,245,70.94c-27.118,0-49.104,21.984-49.104,49.102
+                                S217.882,169.144,245,169.144z M245,86.252c18.632,0,33.788,15.157,33.788,33.79c0,18.632-15.156,33.789-33.788,33.789
+                                s-33.791-15.157-33.791-33.789C211.208,101.41,226.368,86.252,245,86.252z"/>
+                            <path d="M195.234,180.425c0,0-49.766,0.664-49.766,46.448c0,45.784,0,56.401,0,56.401s96.873,0,97.206,0L195.234,180.425z
+                                    M160.781,226.873c0-20.502,14.669-27.52,25.216-29.915l32.752,71.003h-57.968V226.873z"/>
+                            <path d="M344.531,283.274c0,0,0-10.617,0-56.401c0-45.784-49.766-46.448-49.766-46.448l-47.444,102.849H344.531z M304.003,196.958
+                                c10.546,2.395,25.216,9.411,25.216,29.915v41.089h-57.971L304.003,196.958z"/>
+                            <polygon points="210.826,180.425 244.999,256.068 279.171,180.425 244.999,180.425 	"/>
+                            <path d="M367.5,0H53.594v490h382.813V76.563L367.5,0z M367.818,23.242l48.85,54.277h-48.85V23.242z M68.906,474.688V15.313h283.599
+                                v77.52h68.589v381.855H68.906z"/>
+                            <rect x="130.16" y="336.307" width="229.687" height="15.312"/>
+                            <rect x="130.16" y="375.44" width="229.687" height="15.313"/>
+                            <rect x="130.16" y="414.574" width="229.687" height="15.313"/>
+                        </g>
+                    </svg>
+                    <div class="mx-3 w-full">
+                        <h3 class="font-medium">
+                            Currículo cadastrado
+                        </h3>
+                        <div class="w-[50%] flex justify-between my-3">
+                            <small class="small_Small__0Prbr">
+                                <a href="{{ Storage::url($user->resume) }}" target="_blank" 
+                                    class="bg-blue-500 text-white p-1.5 rounded font-medium
+                                    hover:bg-blue-400">
+                                    Visualizar ou baixar
+                                </a>
+                            </small>
+                            <small class="small_Small__0Prbr">
+                                <a href="/user/profile/delete-resume"
+                                    class="bg-red-500 text-white p-1.5 rounded font-medium
+                                    hover:bg-red-400">
+                                    Excluir Currículo
+                                </a>
+                            </small>
+                        </div>
+                    </div>
+                </div>
                 @endif
                 
             </div>
@@ -170,15 +315,76 @@
     </div>
 </x-layout>
 <script>
-    document.querySelector(".finalizarConta").remove();
+    if(document.querySelector(".finalizarConta")) {
+        document.querySelector(".finalizarConta").remove();
+    }
+    userData = document.querySelector(".userData");
+    userDataUpdate = document.querySelector(".userDataUpdate");
+    editUserData = document.querySelector(".btnEditar");
+    btnCancelar = document.querySelector(".btnCancelar");
     btnEnviarCurriculo = document.querySelector(".enviarCurriculo");
     btnEnviarCurriculoForm = document.querySelector(".update-resume");
     inputEnviarCurriculo = document.getElementById("upload-resume");
+    editUserData.addEventListener("click", ()=> {
+        if(userData.classList.contains("block")) {
+            userData.classList.replace("block", "hidden");
+            userDataUpdate.classList.replace("hidden", "block");
+            editUserData.classList.add("bg-gray-300");
+        }else {
+            userData.classList.replace("hidden", "block");
+            userDataUpdate.classList.replace("block", "hidden");
+            editUserData.classList.remove("bg-gray-300");
+        }
+    });
+    btnCancelar.addEventListener("click", ()=> {
+        if(!userData.classList.contains("block")) {
+            userData.classList.replace("hidden", "block");
+            userDataUpdate.classList.replace("block", "hidden");
+            editUserData.classList.remove("bg-gray-300");
+        }
+    })
     btnEnviarCurriculo.addEventListener("click", ()=> {
         inputEnviarCurriculo.click();
     });
     function updateResume() {
-        btnEnviarCurriculoForm.click();
+        setTimeout(() => {
+            btnEnviarCurriculoForm.click();
+        }, 700);
     }
+    document.getElementById('state').addEventListener('change', function () {
+        const state = this.value;
+        const citiesSelect = document.getElementById('city');
+
+        // Reset cities select
+        citiesSelect.innerHTML = '<option value="">Selecione uma cidade</option>';
+        citiesSelect.disabled = true;
+
+        if (!state) return;
+
+        // Fetch cities from the API
+        fetch(`/api/cidades/${state}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar cidades.', response);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const { cidades } = data;
+                if (cidades && cidades.length > 0) {
+                    cidades.forEach(cidade => {
+                        const option = document.createElement('option');
+                        option.value = cidade.id; // O ID da cidade
+                        option.textContent = cidade.name; // O nome da cidade
+                        citiesSelect.appendChild(option);
+                    });
+
+                    citiesSelect.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar cidades:', error);
+            }
+        );
+    });
 </script>
-@dd($user)

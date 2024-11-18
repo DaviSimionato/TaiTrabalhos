@@ -90,14 +90,58 @@ class UserController extends Controller
         ]);
     }
 
+    public function updateUserData(Request $request) {
+        $user = $request->user();
+        // $request->headers->set('Accept', 'application/json');
+        $userData = $request->validate([
+            "user_name" => "string|max:48",
+            "name" => "string|max:120",
+            "current_situation" => "string|in:Trabalhando,Buscando emprego",
+            "current_position" => "string|max:72",
+            "state" => "exists:states,acronym|nullable",
+            "city" => "exists:cities,id|integer|nullable",
+            "company" => "string|max:72"
+        ]);
+        $state = State::where("acronym", $userData["state"])->first();
+        if($state) {
+            $userData["state"] = $state->id;
+        }
+        $modifiedData = false;
+        foreach($userData as $data => $value) {
+            if($value == "Não definido" || $value == "Nome não definido") {
+                $value = null;
+            }
+            if ($value !== $user->$data) {
+                $user->$data = $value;
+                $modifiedData = true;
+            }
+        }
+        if($modifiedData) {
+            $user->update();
+            return redirect("/user/profile")->with("message", "Dados alterados com sucesso!");
+        }
+        return redirect("/user/profile")->with("message", "Nenhuma alteração realizada!");
+    }
+
     public function updateResume(Request $request) {
         $user = $request->user();
-        $userData = $request->validate([
-            // "resume" => "required|file|max:8024|mimes:pdf,docx,doc,txt"
+        $request->validate([
+            "resume" => "required|file|max:8024|mimes:pdf,txt,png,jpg,jpeg,webp"
         ]);
-        dd($request->file("resume", $request->resume));
-        $user->resume = Storage::put("resumes/$user->id/", $request->file("resume"));
+        $file = $request->file("resume");
+        $path = "resumes/$user->id";
+        $filePath = $file->store($path, 'public');
+        $user->resume = $filePath;
         $user->update();
-        return redirect("/user/profile")->with("message", "Currículo atualizado!");
+
+        return redirect("/user/profile")->with("message", "Currículo atualizado com sucesso!");
+    }
+
+    public function deleteResume(Request $request) {
+        $user = $request->user();
+        $user->resume = null;
+        $user->update();
+
+        return redirect("/user/profile")->with("message", "Currículo removido com sucesso!");
     }
 }
