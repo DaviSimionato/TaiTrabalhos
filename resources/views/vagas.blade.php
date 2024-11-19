@@ -81,10 +81,27 @@
                                 </p>
                             </div>
                             <div class="flex items-center">
+                                @if ($vaga->isFavorite)
+                                <div class="saveListing ml-5 p-2 mt-2 bg-tt rounded
+                                cursor-pointer hover:bg-ttLight text-white" title="Salvar vaga">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path fill="#000" fill-rule="evenodd" d="M19 21.315V3.591C19 2.72 18.306 2 17.469 2H6.53C5.694 2 5 2.721 5 3.59v17.725c0 .17.06.335.17.461a.638.638 0 0 0 .862.1L12 17.601l5.968 4.275a.64.64 0 0 0 .938-.206.703.703 0 0 0 .094-.355ZM6.5 19.696l4.627-3.314a1.5 1.5 0 0 1 1.746 0l4.627 3.314V3.591a.117.117 0 0 0-.043-.091H6.543a.117.117 0 0 0-.043.09v16.106Z" clip-rule="evenodd"></path></svg>
+                                </div>    
+                                @else
                                 <div class="saveListing ml-5 p-2 mt-2 bg-gray-100 rounded
                                 cursor-pointer hover:bg-gray-200" title="Salvar vaga">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path fill="#000" fill-rule="evenodd" d="M19 21.315V3.591C19 2.72 18.306 2 17.469 2H6.53C5.694 2 5 2.721 5 3.59v17.725c0 .17.06.335.17.461a.638.638 0 0 0 .862.1L12 17.601l5.968 4.275a.64.64 0 0 0 .938-.206.703.703 0 0 0 .094-.355ZM6.5 19.696l4.627-3.314a1.5 1.5 0 0 1 1.746 0l4.627 3.314V3.591a.117.117 0 0 0-.043-.091H6.543a.117.117 0 0 0-.043.09v16.106Z" clip-rule="evenodd"></path></svg>
                                 </div>
+                                @endif
+                                @if ($vaga->isApplied)
+                                <div class="mt-2 p-4 py-2.5 ml-5 text-white bg-tt 
+                                rounded font-medium hover:bg-ttLight flex items-center
+                                quickApply cursor-pointer">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff" class="EasyApplyButton_bolt__6VJWS"><path fill="currentColor" d="M6.049 13.945 14.69 2.104c.16-.219.505-.063.447.2l-1.678 7.639h5.008a.25.25 0 0 1 .202.397l-8.642 11.841c-.16.219-.505.064-.447-.2l1.678-7.638H6.25a.25.25 0 0 1-.201-.398Z"></path></svg>
+                                    <p class="pointer-events-none">
+                                        Usuário já candidatado
+                                    </p>
+                                </div>    
+                                @else
                                 <div class="mt-2 p-4 py-2.5 ml-5 text-white bg-tt 
                                 rounded font-medium hover:bg-ttLight flex items-center
                                 quickApply cursor-pointer">
@@ -93,7 +110,8 @@
                                     class="pointer-events-none">
                                         Candidatura rápida
                                     </a>
-                                </div>
+                                </div>    
+                                @endif
                             </div>
                         </div>
                         <div class="mt-8">
@@ -191,3 +209,10 @@
         });
     });
 </script>
+@if (session()->has("vagaSelected"))
+<script>
+    setTimeout(() => {
+        vagas[{{intval(session("vagaSelected"))}}].click();
+    }, 150);
+</script>
+@endif

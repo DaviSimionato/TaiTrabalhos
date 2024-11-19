@@ -81,14 +81,22 @@
                     py-3 mt-10 rounded text-sm ">
                         <div class="flex flex-col">
                             <a href="/user/profile" class="py-1 border-b border-[#C4C7CC] 
-                            hover:bg-gray-50 rounded">
+                            hover:bg-gray-100 rounded">
                                 Meu perfil
                             </a>
+                            <a href="/user/profile/favorite-listings" class="py-1 border-b border-[#C4C7CC] 
+                            hover:bg-gray-100 rounded">
+                                Vagas salvas
+                            </a>
+                            <a href="/user/profile/applied-listings" class="py-1 border-b border-[#C4C7CC] 
+                            hover:bg-gray-100 rounded">
+                                Candidaturas
+                            </a>
                             <a href="/user/profile/settings" class="py-1 border-b border-[#C4C7CC] 
-                            hover:bg-gray-50 rounded">
+                            hover:bg-gray-100 rounded">
                                 Configurações
                             </a>
-                            <a href="/logout" class="py-1 hover:bg-gray-50 rounded">
+                            <a href="/logout" class="py-1 hover:bg-gray-100 rounded">
                                 Sair
                             </a>
                         </div>

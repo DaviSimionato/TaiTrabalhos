@@ -21,7 +21,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 8.000,00',
             'benefits' => 'Vale transporte, Vale refeição, Plano de saúde, Seguro de vida, Auxílio home office',
             'tags' => 'PHP, Laravel, API, Backend, MySQL, Segurança',
-            'candidates_count' => 0,
+            'candidates_count' => 12,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -34,7 +34,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 7.000,00',
             'benefits' => 'Plano de saúde, Vale refeição, Flexibilidade de horário, Participação nos lucros',
             'tags' => 'React, JavaScript, CSS, Frontend, UI/UX',
-            'candidates_count' => 0,
+            'candidates_count' => 23,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -47,7 +47,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 9.000,00',
             'benefits' => 'Vale transporte, Plano de saúde, Participação nos lucros, Auxílio educação',
             'tags' => 'Flutter, Mobile, Desenvolvimento, Dart, Cross-Platform',
-            'candidates_count' => 0,
+            'candidates_count' => 35,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -60,7 +60,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 12.000,00',
             'benefits' => 'Vale refeição, Plano de saúde, Seguro odontológico, Auxílio educação',
             'tags' => 'Fullstack, React, Node.js, Segurança, AWS',
-            'candidates_count' => 0,
+            'candidates_count' => 41,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -73,7 +73,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 13.500,00',
             'benefits' => 'Plano de saúde, Vale refeição, Auxílio home office, Participação nos lucros',
             'tags' => 'Engenharia de Software, Cloud, AWS, DevOps, Kubernetes',
-            'candidates_count' => 0,
+            'candidates_count' => 60,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -86,7 +86,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 7.500,00',
             'benefits' => 'Vale refeição, Plano de saúde, Vale transporte, Seguro de vida',
             'tags' => 'Python, Backend, Dados, Machine Learning, Flask',
-            'candidates_count' => 0,
+            'candidates_count' => 42,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -99,7 +99,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 8.000,00',
             'benefits' => 'Plano de saúde, Vale refeição, Auxílio transporte',
             'tags' => 'Node.js, Backend, APIs, JavaScript',
-            'candidates_count' => 0,
+            'candidates_count' => 32,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -112,7 +112,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 10.000,00',
             'benefits' => 'Vale transporte, Vale refeição, Plano de saúde, Seguro odontológico',
             'tags' => 'Java, Backend, Spring Boot, Microservices',
-            'candidates_count' => 0,
+            'candidates_count' => 56,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -125,7 +125,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 9.500,00',
             'benefits' => 'Plano de saúde, Vale refeição, Seguro de vida',
             'tags' => 'Unity, C#, Desenvolvimento de Jogos',
-            'candidates_count' => 0,
+            'candidates_count' => 29,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -138,7 +138,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 14.000,00',
             'benefits' => 'Vale transporte, Plano de saúde, Participação nos lucros, Seguro odontológico',
             'tags' => 'Arquitetura de Software, Cloud, DevOps, Infraestrutura',
-            'candidates_count' => 0,
+            'candidates_count' => 10,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
