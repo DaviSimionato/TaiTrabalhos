@@ -1,3 +1,4 @@
+@dd($vagas)
 <x-layout title="Vagas" column="true">
     <div class="pesquisa py-4">
         <div class="flex justify-center">
@@ -15,17 +16,18 @@
     <div class="container vagas pb-5">
         <div class="flex border-[#D7D7D7] justify-center bg-white">
             <div class="border-[#D7D7D7] border-2 border-r-0 rounded-l max-h-[70vh] overflow-y-scroll">
-                @for ($i = 1; $i < 400; $i++)
+                @foreach ($vagas as $vaga)
                 <div class="border-[#D7D7D7] border-b-2 min-w-[300px] min-h-[80px] cursor-pointer 
                 hover:bg-gray-50">
                     <p class="p-2">
-                        Titulo: {{$i}}
+                        {{ $vaga->title }}
                     </p>
                     <p class="pl-4">
-                        sla
+                        {{ $vaga->city->name}}, 
+                        {{ $vaga->state->state}}
                     </p>
                 </div>
-                @endfor
+                @endforeach
             </div>
             <div class="border-[#D7D7D7] border-2 min-w-[60%] min-h-[70vh] rounded-r max-h-[70vh] overflow-y-scroll">
                 <div class="w-full p-6 vaga">

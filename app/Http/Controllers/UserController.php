@@ -108,7 +108,7 @@ class UserController extends Controller
         }
         $modifiedData = false;
         foreach($userData as $data => $value) {
-            if($value == "Não definido" || $value == "Nome não definido") {
+            if($value == "Não definido" || $value == "Nome não definido" || trim($value) == "") {
                 $value = null;
             }
             if ($value !== $user->$data) {

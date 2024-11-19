@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id()->primary();
             $table->string('title');
             $table->text('description');
-            $table->enum('modality', ['presential', 'home_office', 'semi_presential']);
+            $table->text('modality')->default("Presencial");
             $table->enum('type', ['clt', 'pj', 'temporary'])->nullable();
             $table->string('salary')->nullable();
             $table->text('benefits')->nullable();
             $table->text('tags')->nullable();
             $table->integer('candidates_count');
             $table->foreignId('city_id')->constrained()->onDelete('restrict');
-            $table->foreignId('category_id')->constrained()->onDelete('restrict');
-            $table->foreignId('sub_category_id')->constrained()->onDelete('restrict');
+            // $table->foreignId('category_id')->constrained()->onDelete('restrict');
+            // $table->foreignId('sub_category_id')->constrained()->onDelete('restrict');
             $table->foreignId('company_id')->constrained()->onDelete('restrict');
             $table->timestamps();
         });
