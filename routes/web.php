@@ -28,7 +28,7 @@ Route::get("/login", [UserController::class, "login"])->middleware("guest");
 
 Route::middleware("auth")->group(function () {
     Route::get("/vagas", [VagasController::class, "vagas"]);
-    Route::get("/vagas/{vaga}", [VagasController::class, "vagas"])->where("vaga", ".*");
+    Route::get("/vagas/{search}", [VagasController::class, "vagas"])->where("vaga", ".*");
     Route::get("/logout", [UserController::class, "logout"]);
     Route::get("/user/profile", [UserController::class, "profile"]);
     Route::post("/user/update-resume", [UserController::class, "updateResume"]);

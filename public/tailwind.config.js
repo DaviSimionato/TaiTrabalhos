@@ -19,7 +19,8 @@ export default {
     extend: {
       colors: {
         tt: "#1791C8",
-        ttBg: "#FDFDFD"
+        ttBg: "#FDFDFD",
+        ttLight: "#2E9CCD",
       },
       fontFamily: {
         sans: ["Poppins", "Arial", "sans-serif"],

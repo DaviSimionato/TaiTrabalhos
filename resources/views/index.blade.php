@@ -69,13 +69,13 @@
                 <div class="mt-4 loading">
                     {{-- <x-loading-wheel size="32"/>  --}}
                     <p class="font-medium text-xl py-2 text-center cidade">
+                        Desenvolvedor FrontEnd
+                    </p>
+                    <p class="font-medium text-xl py-2 text-center cidade">
+                        Desenvolvedor BackEnd
+                    </p>
+                    <p class="font-medium text-xl py-2 text-center cidade">
                         Engenheiro de Software
-                    </p>
-                    <p class="font-medium text-xl py-2 text-center cidade">
-                        Programador FrontEnd
-                    </p>
-                    <p class="font-medium text-xl py-2 text-center cidade">
-                        Programador BackEnd
                     </p>
                     <p class="font-medium text-xl py-2 text-center cidade">
                         Arquiteto de Software
