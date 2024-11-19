@@ -29,6 +29,9 @@ Route::get("/login", [UserController::class, "login"])->middleware("guest");
 Route::middleware("auth")->group(function () {
     Route::get("/vagas", [VagasController::class, "vagas"]);
     Route::get("/vagas/{search}", [VagasController::class, "vagas"])->where("vaga", ".*");
+    Route::get("/user/favorite-listing/{listing}", [VagasController::class, "favoriteListing"]);
+    Route::get("/user/remove-favorite-listing/{listing}", [VagasController::class, "removeFavoriteListing"]);
+    Route::get("/listing/apply/{listing}", [VagasController::class, "applyListing"]);
     Route::get("/logout", [UserController::class, "logout"]);
     Route::get("/user/profile", [UserController::class, "profile"]);
     Route::post("/user/update-resume", [UserController::class, "updateResume"]);

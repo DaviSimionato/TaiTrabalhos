@@ -11,6 +11,8 @@ use App\Models\ListingApplication;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
+use function PHPSTORM_META\type;
+
 class VagasController extends Controller
 {
     
@@ -41,5 +43,49 @@ class VagasController extends Controller
             "vagas" => $vagas,
             "search" => $search,
         ]);
+    }
+
+    public function applyListing(JobListing $listing, Request $request) {
+        $user = $request->user();
+        if($user->resume == null || $user->resume == "") {
+            return redirect("/user/profile")->with("message", "Adicione um currículo ao seu perfil!");
+        }
+        $favTest = ListingApplication::where("user_id", $user->id)->where("job_listing_id", $listing->id)->first();
+        if($favTest) {
+            return redirect("/vagas/desenvolvedor")->with("vagaSelected", $listing->id)
+            ->with("message", "Usuário já candidatado!");
+        }
+        ListingApplication::create([
+            "user_id" => $user->id,
+            "job_listing_id" => $listing->id,
+            "resume" => $user->resume
+        ]);
+        $listing->candidate_count++;
+        $listing->update();
+        return redirect("/vagas/desenvolvedor")->with("vagaSelected", $listing->id)
+        ->with("message", "Currículo enviado!");
+    }
+
+    public function favoriteListing(JobListing $listing, Request $request) {
+        $user = $request->user();
+        $favTest = FavoritedListing::where("user_id", $user->id)->where("job_listing_id", $listing->id)->first();
+        if(!$favTest) {
+            FavoritedListing::create([
+                "user_id" => $user->id,
+                "job_listing_id" => $listing->id
+            ]);
+        }
+        return redirect("/vagas/desenvolvedor")->with("vagaSelected", $listing->id)
+        ->with("message", "Vaga adicionada aos favoritos!");
+    }
+
+    public function removeFavoriteListing(JobListing $listing, Request $request) {
+        $user = $request->user();
+        $favTest = FavoritedListing::where("user_id", $user->id)->where("job_listing_id", $listing->id)->first();
+        if($favTest) {
+            $favTest->delete();
+        }
+        return redirect("/vagas/desenvolvedor")->with("vagaSelected", $listing->id)
+        ->with("message", "Vaga removida dos favoritos!");
     }
 }

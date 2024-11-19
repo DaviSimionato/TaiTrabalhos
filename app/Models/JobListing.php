@@ -20,7 +20,7 @@ class JobListing extends Model
         'salary',
         'benefits',
         'tags',
-        'candidates_count',
+        'candidate_count',
         'city_id',
         'category_id',
         'sub_category_id',

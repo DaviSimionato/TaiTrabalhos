@@ -19,7 +19,7 @@
                 @foreach ($vagas as $vaga)
                 <div class="border-[#D7D7D7] border-b-2 min-w-[300px] mb-4 
                 min-h-[80px] rounded-lg cursor-pointer hover:bg-gray-100 p-2
-                vaga-card">
+                vaga-card id-{{$vaga->id}}">
                     <div class="flex items-center">
                         <img src="{{ asset($vaga->company->logo) }}" alt="logo" 
                         width="32" class="rounded">
@@ -54,6 +54,9 @@
             </div>
             <div class="border-[#D7D7D7] border-2 max-w-[60%] min-w-[60%] min-h-[70vh] 
             rounded-lg max-h-[70vh] overflow-y-scroll vagaContainer text-[#222]">
+                {{-- <div class="w-full h-full flex items-center justify-center loading">
+                    <x-loading-wheel size="100"/>
+                </div> --}}
                 <div class="w-full p-6 vaga">
                     @foreach ($vagas as $vaga)
                     <div class="vagaDescription">
@@ -82,32 +85,35 @@
                             </div>
                             <div class="flex items-center">
                                 @if ($vaga->isFavorite)
-                                <div class="saveListing ml-5 p-2 mt-2 bg-tt rounded
-                                cursor-pointer hover:bg-ttLight text-white" title="Salvar vaga">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path fill="#000" fill-rule="evenodd" d="M19 21.315V3.591C19 2.72 18.306 2 17.469 2H6.53C5.694 2 5 2.721 5 3.59v17.725c0 .17.06.335.17.461a.638.638 0 0 0 .862.1L12 17.601l5.968 4.275a.64.64 0 0 0 .938-.206.703.703 0 0 0 .094-.355ZM6.5 19.696l4.627-3.314a1.5 1.5 0 0 1 1.746 0l4.627 3.314V3.591a.117.117 0 0 0-.043-.091H6.543a.117.117 0 0 0-.043.09v16.106Z" clip-rule="evenodd"></path></svg>
+                                <div class="removeFavoriteListing ml-5 p-2 mt-2 bg-red-500 rounded
+                                cursor-pointer hover:bg-red-600 text-white" title="Remover dos favoritos">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ffffff"><path fill="#ffffff" fill-rule="evenodd" d="M19 21.315V3.591C19 2.72 18.306 2 17.469 2H6.53C5.694 2 5 2.721 5 3.59v17.725c0 .17.06.335.17.461a.638.638 0 0 0 .862.1L12 17.601l5.968 4.275a.64.64 0 0 0 .938-.206.703.703 0 0 0 .094-.355ZM6.5 19.696l4.627-3.314a1.5 1.5 0 0 1 1.746 0l4.627 3.314V3.591a.117.117 0 0 0-.043-.091H6.543a.117.117 0 0 0-.043.09v16.106Z" clip-rule="evenodd"></path></svg>
+                                    <a href="/user/remove-favorite-listing/{{$vaga->id}}" class="hidden"></a>
                                 </div>    
                                 @else
-                                <div class="saveListing ml-5 p-2 mt-2 bg-gray-100 rounded
-                                cursor-pointer hover:bg-gray-200" title="Salvar vaga">
+                                <div class="ml-5 p-2 mt-2 bg-gray-100 rounded
+                                cursor-pointer hover:bg-gray-200 favoriteListing" title="Adicionar aos favoritos">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path fill="#000" fill-rule="evenodd" d="M19 21.315V3.591C19 2.72 18.306 2 17.469 2H6.53C5.694 2 5 2.721 5 3.59v17.725c0 .17.06.335.17.461a.638.638 0 0 0 .862.1L12 17.601l5.968 4.275a.64.64 0 0 0 .938-.206.703.703 0 0 0 .094-.355ZM6.5 19.696l4.627-3.314a1.5 1.5 0 0 1 1.746 0l4.627 3.314V3.591a.117.117 0 0 0-.043-.091H6.543a.117.117 0 0 0-.043.09v16.106Z" clip-rule="evenodd"></path></svg>
+                                    <a href="/user/favorite-listing/{{$vaga->id}}" class="hidden"></a>
                                 </div>
                                 @endif
                                 @if ($vaga->isApplied)
                                 <div class="mt-2 p-4 py-2.5 ml-5 text-white bg-tt 
-                                rounded font-medium hover:bg-ttLight flex items-center
-                                quickApply cursor-pointer">
+                                rounded font-medium flex items-center
+                                quickApply">
                                     <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff" class="EasyApplyButton_bolt__6VJWS"><path fill="currentColor" d="M6.049 13.945 14.69 2.104c.16-.219.505-.063.447.2l-1.678 7.639h5.008a.25.25 0 0 1 .202.397l-8.642 11.841c-.16.219-.505.064-.447-.2l1.678-7.638H6.25a.25.25 0 0 1-.201-.398Z"></path></svg>
-                                    <p class="pointer-events-none">
+                                    <a href="#" 
+                                    class="pointer-events-none select-none">
                                         Usuário já candidatado
-                                    </p>
+                                    </a>
                                 </div>    
                                 @else
                                 <div class="mt-2 p-4 py-2.5 ml-5 text-white bg-tt 
                                 rounded font-medium hover:bg-ttLight flex items-center
                                 quickApply cursor-pointer">
-                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff" class="EasyApplyButton_bolt__6VJWS"><path fill="currentColor" d="M6.049 13.945 14.69 2.104c.16-.219.505-.063.447.2l-1.678 7.639h5.008a.25.25 0 0 1 .202.397l-8.642 11.841c-.16.219-.505.064-.447-.2l1.678-7.638H6.25a.25.25 0 0 1-.201-.398Z"></path></svg>
-                                    <a href="/job-listing/quick-apply/{{$vaga->id}}" 
-                                    class="pointer-events-none">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="ffffff" class="text-white"><path fill="currentColor" d="M6.049 13.945 14.69 2.104c.16-.219.505-.063.447.2l-1.678 7.639h5.008a.25.25 0 0 1 .202.397l-8.642 11.841c-.16.219-.505.064-.447-.2l1.678-7.638H6.25a.25.25 0 0 1-.201-.398Z"></path></svg>
+                                    <a href="/listing/apply/{{$vaga->id}}" 
+                                    class="pointer-events-none select-none">
                                         Candidatura rápida
                                     </a>
                                 </div>    
@@ -135,7 +141,7 @@
                         <div class="my-8 border border-[#D7D7D7]"></div>
                         <div class="">
                             <h2 class="text-xl font-semibold">
-                                Salário base
+                                Salário divulgado
                             </h2>
                             <div class="border border-[#D7D7D7] rounded my-4
                             p-6 bg-gray-50">
@@ -186,6 +192,25 @@
     });
     const vagas = document.querySelectorAll(".vagas .vaga-card");
     const vagasDescription = document.querySelectorAll(".vagas .vagaDescription");
+    const loading = document.querySelector(".loading");
+    if(document.querySelectorAll(".favoriteListing")) {
+        let favoriteListing = document.querySelectorAll(".favoriteListing");
+        let favoriteListingLink = document.querySelectorAll(".favoriteListing a");
+        favoriteListing.forEach((fav, i)=> {
+            fav.addEventListener("click", ()=> {
+                favoriteListingLink[i].click();
+            });
+        });
+    }
+    if(document.querySelectorAll(".removeFavoriteListing")) {
+        let favoriteListing = document.querySelectorAll(".removeFavoriteListing");
+        let favoriteListingLink = document.querySelectorAll(".removeFavoriteListing a");
+        favoriteListing.forEach((fav, i)=> {
+            fav.addEventListener("click", ()=> {
+                favoriteListingLink[i].click();
+            });
+        });
+    }    
 
     vagas.forEach((vaga, i)=> {
         vagasDescription[i].classList.add("hidden");
@@ -195,7 +220,13 @@
                 vagas[i].classList.remove("border-2", "bg-gray-50");
             });
             vagas[i].classList.add("border-2", "bg-gray-50");
-            vagasDescription[i].classList.replace("hidden", "block");
+            // if(loading.classList.contains("hidden")) {
+                // loading.classList.replace("hidden", "flex");
+                // setTimeout(() => {
+                //     loading.classList.replace("flex", "hidden");
+                    vagasDescription[i].classList.replace("hidden", "block");
+                // }, 150);
+            // }
         });
     });
     vagas[0].classList.add("border-2", "bg-gray-50");
@@ -208,11 +239,15 @@
             quickApplyBtn[i].click();
         });
     });
+    setTimeout(() => {
+                    loading.classList.replace("flex", "hidden");
+    }, 100);
 </script>
 @if (session()->has("vagaSelected"))
 <script>
     setTimeout(() => {
-        vagas[{{intval(session("vagaSelected"))}}].click();
-    }, 150);
+        let vagaSelected = document.querySelector(".id-{{session(('vagaSelected'))}}");
+        vagaSelected.click();
+    }, 50);
 </script>
 @endif

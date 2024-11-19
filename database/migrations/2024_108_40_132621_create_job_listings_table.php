@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('salary')->nullable();
             $table->text('benefits')->nullable();
             $table->text('tags')->nullable();
-            $table->integer('candidates_count');
+            $table->integer('candidate_count')->default(0);
             $table->foreignId('city_id')->constrained()->onDelete('restrict');
             // $table->foreignId('category_id')->constrained()->onDelete('restrict');
             // $table->foreignId('sub_category_id')->constrained()->onDelete('restrict');
