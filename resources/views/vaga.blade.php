@@ -1,22 +1,8 @@
-<x-layout title="Vagas {{ $search }}" column="true">
-    <div class="pesquisa py-4">
-        <div class="flex justify-center">
-            <input type="text" class="border-[#D7D7D7] border-2 rounded-l p-1 pl-2 text-base w-[40%]
-            placeholder:pl-2 outline-none focus:border-tt border-r-0 font-medium"
-            placeholder="Encontre sua vaga" id="inputPesquisa" value="{{$search}}">
-            <div class="flex items-center justify-center bg-tt text-white rounded-r 
-            hover:bg-blue-400 cursor-pointer active:bg-tt btnPesquisar">
-                <span class="material-symbols-outlined text-white p-2">
-                    search
-                </span>
-            </div>
-        </div>
-    </div>
+<x-layout title="Vaga | {{ $search }}" column="false">
     <div class="container vagas pb-5">
-        <div class="flex border-[#D7D7D7] justify-center bg-white">
-            <div class="border-[#D7D7D7] max-h-[70vh] 
+        <div class="flex border-[#D7D7D7] justify-center bg-white mt-10">
+            <div class="border-[#D7D7D7] max-h-[80vh] 
             overflow-y-scroll mr-4">
-                @foreach ($vagas as $vaga)
                 <div class="border-[#D7D7D7] border-b-2 min-w-[300px] mb-4 
                 min-h-[80px] rounded-lg cursor-pointer hover:bg-gray-100 p-2
                 vaga-card id-{{$vaga->id}}">
@@ -50,7 +36,6 @@
                         </p>
                     </div>
                 </div>
-                @endforeach
             </div>
             <div class="border-[#D7D7D7] border-2 max-w-[60%] min-w-[60%] min-h-[70vh] 
             rounded-lg max-h-[70vh] overflow-y-scroll vagaContainer text-[#222]">
@@ -58,7 +43,6 @@
                     <x-loading-wheel size="100"/>
                 </div> --}}
                 <div class="w-full p-6 vaga">
-                    @foreach ($vagas as $vaga)
                     <div class="vagaDescription">
                         <div class="flex items-center">
                             <img src="{{asset($vaga->company->logo)}}" alt="logo" 
@@ -172,7 +156,6 @@
                         @endforeach
                         </div>
                     </div>
-                    @endforeach
                 </div>
             </div>
         </div>

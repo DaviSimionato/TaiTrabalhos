@@ -22,29 +22,29 @@
                             Perfil
                     </div>
                     <div class="mb-5 group">
+                        <a href="/user/profile/favorite-listings" class="mx-4 flex">
+                            <div class="border-4 rounded-sm mr-2 border-[#D7D7D7] invisible
+                            group-hover:visible animate-pulse"></div>
+                            <p>
+                                Vagas salvas
+                            </p>
+                        </a>
+                    </div>
+                    <div class="mb-5 group">
+                        <a href="/user/profile/applied-listings" class="mx-4 flex">
+                            <div class="border-4 rounded-sm mr-2 border-[#D7D7D7] invisible
+                            group-hover:visible animate-pulse"></div>
+                            <p>
+                                Vagas que participo
+                            </p>
+                        </a>
+                    </div>
+                    <div class="mb-5 group">
                         <a href="/user/profile/settings" class="mx-4 flex">
                             <div class="border-4 rounded-sm mr-2 border-[#D7D7D7] invisible
                             group-hover:visible animate-pulse"></div>
                             <p>
                                 Configurações da conta
-                            </p>
-                        </a>
-                    </div>
-                    <div class="mb-5 group">
-                        <a href="user/profile/settings/notifications" class="mx-4 flex">
-                            <div class="border-4 rounded-sm mr-2 border-[#D7D7D7] invisible
-                            group-hover:visible animate-pulse"></div>
-                            <p>
-                                Configurações de notificações
-                            </p>
-                        </a>
-                    </div>
-                    <div class="mb-5 group">
-                        <a href="user/profile/following" class="mx-4 flex">
-                            <div class="border-4 rounded-sm mr-2 border-[#D7D7D7] invisible
-                            group-hover:visible animate-pulse"></div>
-                            <p>
-                                Empresas que você segue
                             </p>
                         </a>
                     </div>
@@ -247,7 +247,7 @@
                     <span class="ResumefileUploader_svgContainer__NPJgc">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-test="resume-section-upload-svg"><g id="Upload"><path id="download-24-solid" fill-rule="currentColor" clip-rule="currentColor" d="M28 21.334c.736 0 1.333.597 1.333 1.333V28c0 .737-.597 1.334-1.333 1.334H4A1.333 1.333 0 0 1 2.667 28v-5.333a1.333 1.333 0 1 1 2.666 0v4h21.334v-4c0-.736.596-1.333 1.333-1.333Zm-12 2.652c.736 0 1.333-.597 1.333-1.333V7.203l5.707 5.707a1.333 1.333 0 1 0 1.886-1.886l-7.967-7.966a1.33 1.33 0 0 0-.96-.39 1.33 1.33 0 0 0-.959.39l-7.966 7.966a1.333 1.333 0 1 0 1.885 1.886l5.707-5.707v15.45c0 .736.598 1.333 1.334 1.333Z" fill="currentColor"></path></g></svg></span>
                         <div class="ml-3">
-                        <h3 class="heading_Heading__BqX5J heading_Level3__X81KK" aria-live="polite" aria-hidden="false" data-test="resume-section-filename">
+                        <h3 class="heading_Heading__BqX5J heading_Level3__X81KK" aria-live="polite" aria-hidden="false" data-test="resume-section-filename" id="curriculo">
                             Carregar currículo
                         </h3>
                         <small class="small_Small__0Prbr" aria-live="polite" 
