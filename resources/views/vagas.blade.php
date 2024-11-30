@@ -3,7 +3,7 @@
         <div class="flex justify-center">
             <input type="text" class="border-[#D7D7D7] border-2 rounded-l p-1 pl-2 text-base w-[40%]
             placeholder:pl-2 outline-none focus:border-tt border-r-0 font-medium"
-            placeholder="Encontre sua vaga" id="inputPesquisa" value="{{$search}}">
+            placeholder="Encontre sua vaga" id="inputPesquisa">
             <div class="flex items-center justify-center bg-tt text-white rounded-r 
             hover:bg-blue-400 cursor-pointer active:bg-tt btnPesquisar">
                 <span class="material-symbols-outlined text-white p-2">

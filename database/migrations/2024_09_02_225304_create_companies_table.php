@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('cnpj');
             $table->string('email');
+            $table->string('sector')->nullable();
             $table->string('address')->nullable();
             $table->foreignId('city_id')->nullable();
             $table->foreignId('state_id')->nullable();

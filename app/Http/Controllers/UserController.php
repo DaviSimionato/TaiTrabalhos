@@ -100,7 +100,8 @@ class UserController extends Controller
             "current_position" => "string|max:72",
             "state" => "exists:states,acronym|nullable",
             "city" => "exists:cities,id|integer|nullable",
-            "company" => "string|max:72"
+            "company" => "string|max:72",
+            "job_preference" => "string|max:128"
         ]);
         $state = State::where("acronym", $userData["state"])->first();
         if($state) {

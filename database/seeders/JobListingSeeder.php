@@ -142,5 +142,31 @@ class JobListingSeeder extends Seeder
             'city_id' => 5005,
             'company_id' => 1,
         ]);
+
+        JobListing::create([
+            'title' => 'Desenvolvedor Frontend React',
+            'description' => 'Procuramos um desenvolvedor frontend apaixonado por tecnologia, com experiência comprovada em React e bibliotecas relacionadas, como Redux. O profissional será responsável por projetar e desenvolver interfaces de usuário interativas e responsivas, garantindo uma experiência de usuário de alta qualidade. Espera-se também que tenha habilidades em otimização de performance e conhecimento em sistemas de design para garantir consistência visual.',
+            'modality' => 'Híbrido',
+            'type' => 'PJ',
+            'salary' => 'R$ 5.000,00',
+            'benefits' => 'Plano de saúde, Vale refeição, Flexibilidade de horário, Participação nos lucros',
+            'tags' => 'React, JavaScript, CSS, Frontend, UI/UX',
+            'candidate_count' => 23,
+            'city_id' => 5005,
+            'company_id' => 2,
+        ]);
+
+        JobListing::create([
+            'title' => 'Desenvolvedor Mobile Flutter',
+            'description' => 'Buscamos um desenvolvedor mobile especialista em Flutter para trabalhar no desenvolvimento de aplicativos modernos e intuitivos para Android e iOS. O profissional será responsável por criar interfaces responsivas, integrar APIs e lidar com ferramentas de gerenciamento de estado, como Provider ou Bloc. É necessário também possuir um olhar crítico para usabilidade e experiência do usuário.',
+            'modality' => 'Remoto',
+            'type' => 'PJ',
+            'salary' => 'R$ 3.600,00',
+            'benefits' => 'Vale transporte, Plano de saúde, Participação nos lucros, Auxílio educação',
+            'tags' => 'Flutter, Mobile, Desenvolvimento, Dart, Cross-Platform',
+            'candidate_count' => 35,
+            'city_id' => 5005,
+            'company_id' => 2,
+        ]);
     }
 }

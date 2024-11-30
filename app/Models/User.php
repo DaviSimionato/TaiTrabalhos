@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'type',
         'cnpj',
+        'job_preference',
         'current_situation',
 		'current_position',		
 		'company_name',

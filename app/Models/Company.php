@@ -22,7 +22,8 @@ class Company extends Model
         'social_media_links',
         'employees_count',
         'profile_picture',
-        'logo'
+        'logo',
+        'sector'
     ];
 
     protected $hidden = [

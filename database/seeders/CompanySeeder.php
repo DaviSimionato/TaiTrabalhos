@@ -26,6 +26,31 @@ class CompanySeeder extends Seeder
             "state_id" => State::where("state", "São Paulo")->first()->id,
             "employees_count" => 20,
             "logo" => "imagens\companies\logo\davidstore-logo.svg",
+            "sector" => "Tecnologia da informação",
+            "password" => bcrypt("123456"),
+        ]);
+        Company::create([
+            "name" => "David'store 2",
+            "cnpj" => "14.525.252/0001-85",
+            "email" => "davidstore@dstore.com",
+            "address" => "Ruas das araras, 183",
+            "city_id" => City::where("name", "Jaú")->first()->id,
+            "state_id" => State::where("state", "São Paulo")->first()->id,
+            "employees_count" => 20,
+            "logo" => "imagens\companies\logo\davidstore-logo.svg",
+            "sector" => "Tecnologia da informação",
+            "password" => bcrypt("123456"),
+        ]);
+        Company::create([
+            "name" => "David'store 3",
+            "cnpj" => "14.525.252/0001-85",
+            "email" => "davidstore@dstore.com",
+            "address" => "Ruas das araras, 183",
+            "city_id" => City::where("name", "Jaú")->first()->id,
+            "state_id" => State::where("state", "São Paulo")->first()->id,
+            "employees_count" => 20,
+            "logo" => "imagens\companies\logo\davidstore-logo.svg",
+            "sector" => "Tecnologia da informação",
             "password" => bcrypt("123456"),
         ]);
     }

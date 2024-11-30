@@ -11,7 +11,6 @@ use App\Models\JobListing;
 use Illuminate\Http\Request;
 use App\Models\FavoritedListing;
 
-use function PHPSTORM_META\type;
 use App\Models\ListingApplication;
 
 class VagasController extends Controller
@@ -45,7 +44,25 @@ class VagasController extends Controller
     
     public function vagas(Request $request, $search = "") {
         $user = $request->user();
-        $vagas = JobListing::all();
+        if(trim($search) != "") {
+            $search = str_replace("-", " ", $search);
+            $secondSearch = str_replace(" ", "", $search);
+            $vagas = JobListing::where("title", "like", "%$search%")
+            ->orWhere("tags", "like", "%$search%")
+            ->orWhere("title", "like", "%$secondSearch%")
+            ->orWhere("tags", "like", "%$secondSearch%")->get();
+        }else {
+            if($user->job_preference == null) {
+                $vagas = JobListing::all();
+            }else {
+                $search = str_replace("-", " ", $user->job_preference);
+                $secondSearch = str_replace(" ", "", $search);
+                $vagas = JobListing::where("title", "like", "%$search%")
+                ->orWhere("tags", "like", "%$search%")
+                ->orWhere("title", "like", "%$secondSearch%")
+                ->orWhere("tags", "like", "%$secondSearch%")->get();
+            }
+        }
         foreach($vagas as $vaga) {
             $vaga->city = City::find($vaga->city_id);
             $vaga->state = State::find($vaga->city->state_id);

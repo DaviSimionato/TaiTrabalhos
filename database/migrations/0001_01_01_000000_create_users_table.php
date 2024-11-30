@@ -15,12 +15,13 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id()->primary();
             $table->enum('status', ['active', 'inactive'])->default('active');
-            $table->string('name')->nullable();;
-            $table->string('user_name')->nullable()->unique();
+            $table->string('name')->nullable();
+            $table->string('user_name')->nullable();
             $table->string('email')->unique();
             $table->boolean('email_verified')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('current_situation', ['Trabalhando', 'Buscando emprego'])->default('Buscando emprego');
+            $table->string('job_preference')->nullable();
             $table->string('current_position')->nullable();
             $table->string('company')->nullable();
             $table->foreignId('city')->nullable();

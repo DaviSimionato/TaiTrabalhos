@@ -9,7 +9,7 @@
             </a>
         </div>
         <div class="modalities font-semibold text-sm h-[100%] flex items-center select-none justify-center">
-            <a href="/vagas/desenvolvedor" class="mx-5 h-[100%] flex items-center 
+            <a href="/vagas" class="mx-5 h-[100%] flex items-center 
             hover:border-b-4 border-tt">
                 Vagas
             </a>

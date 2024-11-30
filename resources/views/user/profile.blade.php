@@ -93,6 +93,12 @@
                         </span>
                     </p>
                     <p class="font-semibold my-4">
+                        Preferência de vaga:
+                        <span class="font-normal">
+                            {{ $user->job_preference ?? "Não definido" }}
+                        </span>
+                    </p>
+                    <p class="font-semibold my-4">
                         Situação empregatícia:
                         <span class="font-normal">
                             {{ $user->current_situation ?? "Não definido" }}
@@ -134,6 +140,12 @@
                         <input type="text" name="name" id="name" 
                         class="font-normal border border-black p-1 pl-4 outline-none rounded"
                         value="{{ $user->name ?? "Nome não definido" }}">
+                    </p>
+                    <p class="font-semibold my-4">
+                        Preferência de vaga:
+                        <input type="text" name="job_preference" id="job_preference" 
+                        class="font-normal border border-black p-1 pl-4 outline-none rounded"
+                        value="{{ $user->job_preference ?? "Não definido" }}">
                     </p>
                     <p class="font-semibold my-4">
                         Situação empregatícia:
