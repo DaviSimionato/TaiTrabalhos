@@ -66,7 +66,7 @@
                 <h1 class="text-2xl font-medium my-6">
                     Vagas salvas
                 </h1>
-                @if ($vagas->isEmpty())
+                @if (empty($vagas))
                     <h2 class="opacity-80 text-xl font-medium pt-8 text-center">
                         Você não tem nenhuma vaga salva
                     </h2>

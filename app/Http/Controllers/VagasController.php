@@ -91,16 +91,18 @@ class VagasController extends Controller
 
     public function appliedListingsPage(Request $request) {
         $user = $request->user();
-        $listings = User::join("listing_applications", "users.id", "=", "listing_applications.user_id")
-        ->join('job_listings', 'listing_applications.job_listing_id', '=', 'job_listings.id')->get();
+        $listings = ListingApplication::where("user_id", $user->id)->get();
+        $vagas = [];
         foreach($listings as $listing) {
+            $listing = JobListing::where("id", $listing->job_listing_id)->first();
             $listing->city = City::find($listing->city_id);
             $listing->state = State::find($listing->city->state_id);
             $listing->company = Company::find($listing->company_id);
+            array_push($vagas, $listing);
         }
         return view("user.applied-listings", [
             "user" => $user,
-            "vagas" => $listings
+            "vagas" => $vagas
         ]);
     }
 
@@ -142,16 +144,18 @@ class VagasController extends Controller
 
     public function favoriteListingsPage(Request $request) {
         $user = $request->user();
-        $listings = User::join("favorited_listings", "users.id", "=", "favorited_listings.user_id")
-        ->join('job_listings', 'favorited_listings.job_listing_id', '=', 'job_listings.id')->get();
+        $listings = FavoritedListing::where("user_id", $user->id)->get();
+        $vagas = [];
         foreach($listings as $listing) {
+            $listing = JobListing::where("id", $listing->job_listing_id)->first();
             $listing->city = City::find($listing->city_id);
             $listing->state = State::find($listing->city->state_id);
             $listing->company = Company::find($listing->company_id);
+            array_push($vagas, $listing);
         }
         return view("user.favorite-listings", [
             "user" => $user,
-            "vagas" => $listings
+            "vagas" => $vagas
         ]);
     }
 

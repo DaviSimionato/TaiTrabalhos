@@ -49,7 +49,7 @@
                 </p>
                 <ul>
                     <li class="text-sm pl-1 my-0.5">
-                        <a href="/cadastro/usuario" class="hover:underline">
+                        <a href="/login" class="hover:underline">
                             Criar uma conta gratuita    
                         </a>   
                     </li>
@@ -59,7 +59,7 @@
                         </a>   
                     </li>
                     <li class="text-sm pl-1 my-0.5">
-                        <a href="/perfil/usuario" class="hover:underline">
+                        <a href="/user/profile" class="hover:underline">
                             Área do candidato  
                         </a>   
                     </li>
