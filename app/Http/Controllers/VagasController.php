@@ -16,6 +16,44 @@ use App\Models\ListingApplication;
 class VagasController extends Controller
 {
 
+    public function cadastrarVagaView(Request $request) {
+        $user = $request->user();
+        $company = Company::where("user_id", $user->id)->first();
+        if ($company) {
+            $company->load('jobListings');
+            $company->listingCount = $company->jobListings->count();
+        } else {
+            $company->listingCount = 0;
+        }
+        $user->city = City::find($company->city_id);
+        $user->state = State::find($company->state_id);
+        return view("company.register-listing", [
+            "user" => $user,
+            "company" => $company,
+        ]);
+    }
+
+    public function cadastrarVaga(Request $request) {
+        $user = $request->user();
+        $company = Company::where("user_id", $user->id)->first();
+        if(!$company) {
+            return redirect("/");
+        }
+        $jobListing = JobListing::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'modality' => $request->modality,
+            'type' => $request->type,
+            'salary' => 'R$' . " " . $request->salary,
+            'benefits' => $request->benefits,
+            'tags' => $request->tags,
+            'candidate_count' => 0,
+            'city_id' => $request->city_id,
+            'company_id' => $company->id,
+        ]);
+        return redirect("/vaga/$jobListing->id")->with("message", "Vaga cadastrada com sucesso!");
+    }
+
     public function vaga(Request $request, JobListing $listing) {
         $user = $request->user();
         $listing->city = City::find($listing->city_id);

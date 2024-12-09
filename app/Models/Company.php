@@ -14,6 +14,7 @@ class Company extends Model
     protected $fillable = [
         'status',
         'name',
+        'user_id',
         'cnpj',
         'email',
         'address',
@@ -52,5 +53,14 @@ class Company extends Model
     public function state()
     {
         return $this->belongsTo(State::class);
+    }
+
+    public function jobListings() {
+        return $this->hasMany(JobListing::class);
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

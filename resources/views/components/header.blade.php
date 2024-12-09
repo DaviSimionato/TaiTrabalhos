@@ -1,5 +1,9 @@
 <header class="border-[#C4C7CC] border-b-[1px]">
+    @if (request()->user() == null || request()->user()->type != "company")
     <div class="container h-[80px] grid grid-cols-3 items-center justify-between">
+    @else
+    <div class="container h-[80px] flex items-center justify-between">
+    @endif
         <div class="logo select-none">
             <a href="/">
                 <img 
@@ -9,18 +13,45 @@
             </a>
         </div>
         <div class="modalities font-semibold text-sm h-[100%] flex items-center select-none justify-center">
-            <a href="/vagas" class="mx-5 h-[100%] flex items-center 
-            hover:border-b-4 border-tt">
-                Vagas
-            </a>
-            <a href="/empresas" class="mx-5 h-[100%] flex items-center 
-            hover:border-b-4 border-tt">
-                Empresas
-            </a>
-            <a href="/salarios" class="mx-5 h-[100%] flex items-center 
-            hover:border-b-4 border-tt">
-                Salários
-            </a>
+            @if (request()->user() == null || request()->user()->type != "company")
+
+                <a href="/vagas" class="mx-5 h-[100%] flex items-center 
+                hover:border-b-4 border-tt">
+                    Vagas
+                </a>
+                <a href="/empresas" class="mx-5 h-[100%] flex items-center 
+                hover:border-b-4 border-tt">
+                    Empresas
+                </a>
+                <a href="/salarios" class="mx-5 h-[100%] flex items-center 
+                hover:border-b-4 border-tt">
+                    Salários
+                </a>
+            
+            @else
+
+                <a href="/vagas" class="mx-5 h-[100%] flex items-center 
+                hover:border-b-4 border-tt">
+                    Vagas
+                </a>
+                <a href="/cadastrar-vaga" class="mx-5 h-[100%] flex items-center 
+                hover:border-b-4 border-tt">
+                    Cadastrar uma vaga
+                </a>
+                <a href="/empresas" class="mx-5 h-[100%] flex items-center 
+                hover:border-b-4 border-tt">
+                    Vagas cadastradas
+                </a>
+                <a href="/empresas" class="mx-5 h-[100%] flex items-center 
+                hover:border-b-4 border-tt">
+                    Empresas
+                </a>
+                <a href="/salarios" class="mx-5 h-[100%] flex items-center 
+                hover:border-b-4 border-tt">
+                    Salários
+                </a>
+                
+            @endif
             @guest
             <a href="/para-empresas" class="mx-5 h-[100%] flex items-center 
             hover:border-b-4 border-tt">
@@ -107,7 +138,7 @@
         </div>
     </div>
     @auth
-    @if (request()->user()->name == null || request()->user()->user_name == null)
+    @if ((request()->user()->name == null || request()->user()->user_name == null) && request()->user()->type != "company")
         <div class="flex items-center justify-center bg-tt border-t finalizarConta">
             <a href="/user/profile" class="text-base font-semibold p-2 text-white select-none hover:underline">
                 Finalize a configuração da sua conta 

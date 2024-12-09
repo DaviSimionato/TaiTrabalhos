@@ -37,6 +37,30 @@ class UserController extends Controller
         }
     }
 
+    public function companyLogin(Request $request) {
+        $userInput = $request->validate([
+            "email" => "required|email",
+            "password" => "required"
+        ], [
+            "email.required" => "O campo de e-mail é obrigatório",
+            "password.required" => "O campo senha é obrigatório",
+        ]);
+        $user = User::where("email", $userInput["email"])->where("type", "company")->first();
+        if(!$user) {
+            return back()->withErrors([
+                "email" => "Dados inválidos"
+            ]);
+        }
+        if(Auth::attempt($userInput)) {
+            request()->session()->regenerate();
+            return redirect("/")->with("message", "Login realizado com sucesso");
+        }else {
+            return back()->withErrors([
+                "email" => "Dados inválidos"
+            ]);
+        }
+    }
+
     public function logout(Request $request) {
         Auth::logout();
         $request->session()->invalidate();

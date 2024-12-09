@@ -25,11 +25,15 @@ Route::get("/", function () {
     return view("index");
 });
 Route::get("/login", [UserController::class, "login"])->middleware("guest");
+Route::get("/para-empresas", [EmpresasController::class, "login"])->middleware("guest");
+Route::post("/company/login", [UserController::class, "companyLogin"]);
 
 Route::middleware("auth")->group(function () {
     Route::get("/vagas", [VagasController::class, "vagas"]);
     Route::get("/vaga/{listing}", [VagasController::class, "vaga"]);
     Route::get("/vagas/{search}", [VagasController::class, "vagas"])->where("vaga", ".*");
+    Route::get("/cadastrar-vaga", [VagasController::class, "cadastrarVagaView"]);
+    Route::post("/cadastrar-vaga", [VagasController::class, "cadastrarVaga"]);
     Route::get("/user/favorite-listing/{listing}", [VagasController::class, "favoriteListing"]);
     Route::get("/user/remove-favorite-listing/{listing}", [VagasController::class, "removeFavoriteListing"]);
     Route::get("/user/profile/delete-application/{listing}", [VagasController::class, "deleteListingApplication"]);
@@ -45,5 +49,4 @@ Route::middleware("auth")->group(function () {
     Route::get("/empresas/{search}", [EmpresasController::class, "searchCompanies"]);
     Route::get("/empresa/{company}/vagas", [EmpresasController::class, "vagas"]);
     Route::get("/salarios", [SalariosController::class, "teste"]);
-    Route::get("/para-empresas", [EmpresasController::class, "teste"]);
 });

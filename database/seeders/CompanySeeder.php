@@ -18,6 +18,7 @@ class CompanySeeder extends Seeder
     public function run(): void
     {   
         Company::create([
+            "user_id" => 1,
             "name" => "David'store",
             "cnpj" => "14.525.252/0001-85",
             "email" => "davidstore@dstore.com",
@@ -30,6 +31,7 @@ class CompanySeeder extends Seeder
             "password" => bcrypt("123456"),
         ]);
         Company::create([
+            "user_id" => 1,
             "name" => "David'store 2",
             "cnpj" => "14.525.252/0001-85",
             "email" => "davidstore@dstore.com",
@@ -42,6 +44,7 @@ class CompanySeeder extends Seeder
             "password" => bcrypt("123456"),
         ]);
         Company::create([
+            "user_id" => 1,
             "name" => "David'store 3",
             "cnpj" => "14.525.252/0001-85",
             "email" => "davidstore@dstore.com",

@@ -82,6 +82,10 @@
                                     <b class="font-medium">Modalidade:</b> <ablueblue class="mx-0.5"/>
                                     {{ $vaga->modality }}
                                 </p>
+                                <p>
+                                    <b class="font-medium">Forma de contratação:</b> <ablueblue class="mx-0.5"/>
+                                    {{ strtoupper($vaga->type) }}
+                                </p>
                             </div>
                             <div class="flex items-center">
                                 @if ($vaga->isFavorite)
@@ -97,6 +101,8 @@
                                     <a href="/user/favorite-listing/{{$vaga->id}}" class="hidden"></a>
                                 </div>
                                 @endif
+                                @if (request()->user()->type != "company")
+
                                 @if ($vaga->isApplied)
                                 <div class="mt-2 p-4 py-2.5 ml-5 text-white bg-tt 
                                 rounded font-medium flex items-center
@@ -117,6 +123,8 @@
                                         Candidatura rápida
                                     </a>
                                 </div>    
+                                @endif
+
                                 @endif
                             </div>
                         </div>
@@ -165,10 +173,12 @@
                         </h2>
                         <div class="flex items-center justify-start mt-4 select-none">
                         @foreach ($vaga->tags as $tag)
+                        @if (!empty(trim($tag)))
                             <p class="p-1 px-3 ml-5 my-1 font-medium text-white 
                             bg-tt rounded text-center">
                                 {{ $tag }}
                             </p>
+                        @endif
                         @endforeach
                         </div>
                     </div>

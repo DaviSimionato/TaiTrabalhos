@@ -14,6 +14,10 @@ use App\Models\ListingApplication;
 class EmpresasController extends Controller
 {
     
+    public function login() {
+        return view('company.login');
+    }
+
     public function companiesView() {
         $companies = Company::orderBy("employees_count")->get();
         foreach($companies as $comp) {
