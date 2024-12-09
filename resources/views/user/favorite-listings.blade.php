@@ -93,7 +93,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="flex items-center w-[220px]">
+                        <div class="flex items-center w-[220px] mx-3">
                             <img src="{{ asset($vaga->company->logo) }}" alt="logo" 
                             width="32" class="rounded">
                             <p class="ml-2">

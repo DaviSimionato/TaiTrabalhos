@@ -44,7 +44,7 @@ class VagasController extends Controller
             'description' => $request->description,
             'modality' => $request->modality,
             'type' => $request->type,
-            'salary' => 'R$' . " " . $request->salary,
+            'salary' => 'R$' . " " . trim(preg_replace('/[^0-9.,]/', '', $request->salary)),
             'benefits' => $request->benefits,
             'tags' => $request->tags,
             'candidate_count' => 0,
@@ -54,12 +54,40 @@ class VagasController extends Controller
         return redirect("/vaga/$jobListing->id")->with("message", "Vaga cadastrada com sucesso!");
     }
 
+    public function vagasCadastradasView(Request $request) {
+        $user = $request->user();
+        $company = Company::where("user_id", $user->id)->first();
+        if(!$company) {
+            return redirect("/");
+        }
+        $listings = JobListing::where("company_id", $company->id)
+        ->orderByDesc("id")->get();
+        $vagas = [];
+        foreach($listings as $listing) {
+            $listing->city = City::find($listing->city_id);
+            $listing->state = State::find($listing->city->state_id);
+            $listing->company = $company;
+            $listing->salary = str_replace("R$", "", $listing->salary);
+            $listing->salary = str_replace(".", "", $listing->salary);
+            $listing->salary = str_replace(",", ".", $listing->salary);
+            $listing->salary = "R$" . number_format(floatval($listing->salary), 2, ",", ".");
+            $listing->releaseDate = Carbon::parse($listing->created_at)->addHours(-3)->format("d/m/Y");
+            array_push($vagas, $listing);
+        }
+        return view("company.listings", [
+            "user" => $user,
+            "vagas" => $vagas,
+            "company" => $company
+        ]);
+
+    }
+
     public function vaga(Request $request, JobListing $listing) {
         $user = $request->user();
         $listing->city = City::find($listing->city_id);
         $listing->state = State::find($listing->city->state_id);
         $listing->company = Company::find($listing->company_id);
-        $listing->releaseDate = Carbon::parse($listing->created_at)->addHours(mt_rand(-1460,-3))->format("d/m/Y");
+        $listing->releaseDate = Carbon::parse($listing->created_at)->addHours(-3)->format("d/m/Y");
         $listing->benefits = explode(",",$listing->benefits);
         $listing->tags = explode(",",$listing->tags);
         $listing->isFavorite = false;
@@ -74,6 +102,10 @@ class VagasController extends Controller
         if($testApplied) {
             $listing->isApplied = true;
         }
+        $listing->salary = str_replace("R$", "", $listing->salary);
+        $listing->salary = str_replace(".", "", $listing->salary);
+        $listing->salary = str_replace(",", ".", $listing->salary);
+        $listing->salary = "R$" . number_format(floatval($listing->salary), 2, ",", ".");
         return view("vaga", [
             "vaga" => $listing,
             "search" => $listing->title
@@ -88,24 +120,26 @@ class VagasController extends Controller
             $vagas = JobListing::where("title", "like", "%$search%")
             ->orWhere("tags", "like", "%$search%")
             ->orWhere("title", "like", "%$secondSearch%")
-            ->orWhere("tags", "like", "%$secondSearch%")->get();
+            ->orWhere("tags", "like", "%$secondSearch%")
+            ->orderByDesc("id")->get();
         }else {
             if($user->job_preference == null) {
-                $vagas = JobListing::all();
+                $vagas = JobListing::orderByDesc("id")->get();
             }else {
                 $search = str_replace("-", " ", $user->job_preference);
                 $secondSearch = str_replace(" ", "", $search);
                 $vagas = JobListing::where("title", "like", "%$search%")
                 ->orWhere("tags", "like", "%$search%")
                 ->orWhere("title", "like", "%$secondSearch%")
-                ->orWhere("tags", "like", "%$secondSearch%")->get();
+                ->orWhere("tags", "like", "%$secondSearch%")
+                ->orderByDesc("id")->get();
             }
         }
         foreach($vagas as $vaga) {
             $vaga->city = City::find($vaga->city_id);
             $vaga->state = State::find($vaga->city->state_id);
             $vaga->company = Company::find($vaga->company_id);
-            $vaga->releaseDate = Carbon::parse($vaga->created_at)->addHours(mt_rand(-1460,-3))->format("d/m/Y");
+            $vaga->releaseDate = Carbon::parse($vaga->created_at)->addHours(-3)->format("d/m/Y");
             $vaga->benefits = explode(",",$vaga->benefits);
             $vaga->tags = explode(",",$vaga->tags);
             $vaga->isFavorite = false;
@@ -120,6 +154,10 @@ class VagasController extends Controller
             if($testApplied) {
                 $vaga->isApplied = true;
             }
+            $vaga->salary = str_replace("R$", "", $vaga->salary);
+            $vaga->salary = str_replace(".", "", $vaga->salary);
+            $vaga->salary = str_replace(",", ".", $vaga->salary);
+            $vaga->salary = "R$" . number_format(floatval($vaga->salary), 2, ",", ".");
         }
         return view("vagas", [
             "vagas" => $vagas,
@@ -164,7 +202,7 @@ class VagasController extends Controller
         ]);
         $listing->candidate_count++;
         $listing->update();
-        return redirect("/vagas/desenvolvedor")->with("vagaSelected", $listing->id)
+        return back()->with("vagaSelected", $listing->id)
         ->with("message", "Currículo enviado!");
     }
 
@@ -206,7 +244,7 @@ class VagasController extends Controller
                 "job_listing_id" => $listing->id
             ]);
         }
-        return redirect("/vagas/desenvolvedor")->with("vagaSelected", $listing->id)
+        return back()->with("vagaSelected", $listing->id)
         ->with("message", "Vaga adicionada aos favoritos!");
     }
 
@@ -216,7 +254,7 @@ class VagasController extends Controller
         if($favTest) {
             $favTest->delete();
         }
-        return redirect("/vagas/desenvolvedor")->with("vagaSelected", $listing->id)
+        return back()->with("vagaSelected", $listing->id)
         ->with("message", "Vaga removida dos favoritos!");
     }
 }

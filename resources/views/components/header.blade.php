@@ -23,10 +23,16 @@
                 hover:border-b-4 border-tt">
                     Empresas
                 </a>
-                <a href="/salarios" class="mx-5 h-[100%] flex items-center 
+                @auth
+                <a href="/user/profile" class="mx-5 h-[100%] flex items-center 
                 hover:border-b-4 border-tt">
-                    Salários
+                    Perfil
                 </a>
+                <a href="/user/profile/favorite-listings" class="mx-5 h-[100%] flex items-center 
+                hover:border-b-4 border-tt">
+                    Vagas salvas
+                </a>
+                @endauth
             
             @else
 
@@ -38,17 +44,13 @@
                 hover:border-b-4 border-tt">
                     Cadastrar uma vaga
                 </a>
-                <a href="/empresas" class="mx-5 h-[100%] flex items-center 
+                <a href="/vagas-cadastradas" class="mx-5 h-[100%] flex items-center 
                 hover:border-b-4 border-tt">
                     Vagas cadastradas
                 </a>
                 <a href="/empresas" class="mx-5 h-[100%] flex items-center 
                 hover:border-b-4 border-tt">
                     Empresas
-                </a>
-                <a href="/salarios" class="mx-5 h-[100%] flex items-center 
-                hover:border-b-4 border-tt">
-                    Salários
                 </a>
                 
             @endif

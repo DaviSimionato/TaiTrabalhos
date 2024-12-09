@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Company;
 use App\Models\User;
 use App\Models\State;
 use Illuminate\Http\Request;
@@ -109,6 +110,13 @@ class UserController extends Controller
         $user = $request->user();
         $user->city = City::find($user->city);
         $user->state = State::find($user->state);
+        if($user->type === "company") {
+            $company = Company::where("user_id", $user->id)->first();
+            return view("company.profile", [
+                "user" => $user,
+                "company" => $company
+            ]);
+        }
         return view("user.profile", [
             "user" => $user
         ]);
