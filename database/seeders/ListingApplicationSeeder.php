@@ -14,7 +14,7 @@ class ListingApplicationSeeder extends Seeder
      */
     public function run(): void
     {
-        $userIds = range(2, 17); // IDs dos usuários (2 a 17)
+        $userIds = range(4, 17); // IDs dos usuários (2 a 17)
         $jobIds = range(1, 32); // IDs das vagas (1 a 32)
 
         // Iterar por cada vaga
@@ -24,7 +24,7 @@ class ListingApplicationSeeder extends Seeder
             shuffle($shuffledUserIds);
 
             // Define quantos usuários vão se candidatar a essa vaga (entre 2 e 5)
-            $applications = rand(10, 16);
+            $applications = rand(10, 13);
 
             // Seleciona os primeiros $applications usuários embaralhados
             $selectedUsers = array_slice($shuffledUserIds, 0, $applications);

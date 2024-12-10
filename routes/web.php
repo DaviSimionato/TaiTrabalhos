@@ -26,7 +26,9 @@ Route::get("/", function () {
 });
 Route::get("/login", [UserController::class, "login"])->middleware("guest");
 Route::get("/para-empresas", [EmpresasController::class, "login"])->middleware("guest");
+Route::get("/para-empresas/registrar", [EmpresasController::class, "registrarView"])->middleware("guest");
 Route::post("/company/login", [UserController::class, "companyLogin"]);
+Route::post("/company/register", [UserController::class, "companyRegister"]);
 
 Route::middleware("auth")->group(function () {
     Route::get("/vagas", [VagasController::class, "vagas"]);

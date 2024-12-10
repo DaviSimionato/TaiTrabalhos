@@ -40,7 +40,7 @@
                         </a>
                     </div>
                     <div class="mb-5 group">
-                        <a href="/user/profile/settings" class="mx-4 flex">
+                        <a href="#" class="mx-4 flex">
                             <div class="border-4 rounded-sm mr-2 border-[#D7D7D7] invisible
                             group-hover:visible animate-pulse"></div>
                             <p>

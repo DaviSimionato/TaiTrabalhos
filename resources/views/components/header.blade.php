@@ -121,11 +121,15 @@
                             hover:bg-gray-100 rounded">
                                 Vagas salvas
                             </a>
+                            @if (request()->user()->type == "company")
+                            
+                            @else
                             <a href="/user/profile/applied-listings" class="py-1 border-b border-[#C4C7CC] 
                             hover:bg-gray-100 rounded">
                                 Candidaturas
                             </a>
-                            <a href="/user/profile/settings" class="py-1 border-b border-[#C4C7CC] 
+                            @endif
+                            <a href="/user/profile" class="py-1 border-b border-[#C4C7CC] 
                             hover:bg-gray-100 rounded">
                                 Configurações
                             </a>

@@ -18,6 +18,10 @@ class EmpresasController extends Controller
         return view('company.login');
     }
 
+    public function registrarView() {
+        return view("company.register");
+    }
+
     public function companiesView() {
         $companies = Company::orderBy("employees_count")->get();
         foreach($companies as $comp) {

@@ -27,6 +27,28 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
+            "type" => "company",
+            "name" => "Pine Tech",
+            "user_name" => "Pine Tech",
+            "email" => "pine@gmail.com",
+            "city" => City::where("name", "Jaú")->first()->id,
+            "state" => State::where("state", "São Paulo")->first()->id,
+            "country" => "Brasil",
+            "password" => bcrypt(123456)
+        ]);
+
+        User::create([
+            "type" => "company",
+            "name" => "Planet",
+            "user_name" => "Planet",
+            "email" => "planet@gmail.com",
+            "city" => City::where("name", "Jaú")->first()->id,
+            "state" => State::where("state", "São Paulo")->first()->id,
+            "country" => "Brasil",
+            "password" => bcrypt(123456)
+        ]);
+
+        User::create([
             "type" => "user",
             "name" => "David Roberto da Silva",
             "user_name" => "David Rob",

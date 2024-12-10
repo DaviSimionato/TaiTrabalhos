@@ -63,6 +63,68 @@ class UserController extends Controller
         }
     }
 
+    public function companyRegister(Request $request) {
+        $messages = [
+            "name.required" => "O nome da empresa é obrigatório.",
+            "name.max" => "O nome da empresa não pode ter mais de 255 caracteres.",
+            "cnpj.required" => "O CNPJ é obrigatório.",
+            "cnpj.regex" => "O CNPJ deve estar no formato válido (xx.xxx.xxx/xxxx-xx).",
+            "cnpj.unique" => "Este CNPJ já está cadastrado.",
+            "email.required" => "O e-mail é obrigatório.",
+            "email.email" => "Insira um endereço de e-mail válido.",
+            "email.unique" => "Este e-mail já está cadastrado.",
+            "password.required" => "A senha é obrigatória.",
+            "password.min" => "A senha deve ter pelo menos 6 caracteres.",
+            "password.confirmed" => "A confirmação da senha não corresponde.",
+            "address.max" => "O endereço não pode ter mais de 255 caracteres.",
+            "sector.max" => "O setor não pode ter mais de 255 caracteres.",
+            "logo.image" => "O arquivo enviado deve ser uma imagem.",
+            "logo.mimes" => "A logo deve estar nos formatos: jpg, jpeg ou png.",
+            "logo.max" => "A logo não pode ter mais de 2 MB.",
+        ];
+        $validatedData = $request->validate([
+            "name" => "required|string|max:255",
+            "cnpj" => "required|regex:/\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}/|unique:companies,cnpj",
+            "email" => "required|email|unique:companies,email",
+            "password" => "required|string|min:6|confirmed",
+            "address" => "nullable|string|max:255",
+            "sector" => "nullable|string|max:255",
+            "logo" => "nullable|image|mimes:jpg,jpeg,png|max:2048",
+        ], $messages);
+        if ($request->hasFile("logo")) {
+            $logo = $request->file("logo");
+            $extension = $logo->getClientOriginalExtension(); // Obtém a extensão original
+            $logoName = uniqid() . '.' . $extension; // Adiciona a extensão ao nome único
+            $logo->move(public_path("/imagens/companies/logo"), $logoName); // Salva na pasta public/logos
+            $validatedData["logo"] = "imagens/companies/logo/" . $logoName; // Caminho para salvar no banco
+        }
+        $validatedData["password"] = bcrypt($validatedData["password"]);
+        $user = User::create([
+            "type" => "company",
+            "name" => $validatedData["name"],
+            "user_name" => $validatedData["name"],
+            "email" => $validatedData["email"],
+            "city" => $request->city ?? null,
+            "state" => State::where("acronym", $request->state)->first()->id ?? null,
+            "country" => "Brasil",
+            "password" => $validatedData["password"]
+        ]);
+        Company::create([
+            "user_id" => $user->id,
+            "name" => $validatedData["name"],
+            "cnpj" => $validatedData["cnpj"],
+            "email" => $validatedData["email"],
+            "address" => $validatedData["address"],
+            "city_id" => $request->city ?? null,
+            "state_id" => State::where("acronym", $request->state)->first()->id ?? null,
+            "employees_count" => 0,
+            "logo" => $validatedData["logo"],
+            "sector" => $validatedData["sector"],
+        ]);
+        Auth::login($user);
+        return redirect("/")->with("message", "Empresa cadastrada com sucesso!");
+    }
+
     public function logout(Request $request) {
         Auth::logout();
         $request->session()->invalidate();

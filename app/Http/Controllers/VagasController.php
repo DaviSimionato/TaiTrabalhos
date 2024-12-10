@@ -314,6 +314,14 @@ class VagasController extends Controller
             $listing->company = Company::find($listing->company_id);
             array_push($vagas, $listing);
         }
+        if($user->type === "company") {
+            $company = Company::where("user_id", $user->id)->first();
+            return view("company.favorite-listings", [
+                "user" => $user,
+                "vagas" => $vagas,
+                "company" => $company
+            ]);
+        }
         return view("user.favorite-listings", [
             "user" => $user,
             "vagas" => $vagas

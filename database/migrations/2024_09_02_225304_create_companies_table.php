@@ -26,8 +26,6 @@ return new class extends Migration
             $table->integer('employees_count')->nullable();
             $table->string('profile_picture')->nullable();
             $table->string('logo')->nullable();
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
