@@ -37,15 +37,6 @@
                         </a>
                     </div>
                     <div class="mb-5 group">
-                        <a href="/user/profile/applied-listings" class="mx-4 flex">
-                            <div class="border-4 rounded-sm mr-2 border-[#D7D7D7] invisible
-                            group-hover:visible animate-pulse"></div>
-                            <p>
-                                Vagas que participo
-                            </p>
-                        </a>
-                    </div>
-                    <div class="mb-5 group">
                         <a href="/user/profile/settings" class="mx-4 flex">
                             <div class="border-4 rounded-sm mr-2 border-[#D7D7D7] invisible
                             group-hover:visible animate-pulse"></div>
@@ -71,8 +62,13 @@
                 <p class="mb-3 text-2xl font-semibold">
                     Perfil - Empresa
                 </p>
+                @if ($company->logo == null)
                 <img src="{{asset("imagens/profile-display.png")}}" alt="profile display" 
                 width="300" class="rounded">
+                @else
+                <img src="{{asset($company->logo)}}" alt="profile display" 
+                width="300" class="rounded">
+                @endif
             </div>
             <div class="border border-[#D7D7D7]"></div>
             <div class="mt-6 pl-6">
@@ -86,50 +82,60 @@
                     </span>
                 </div>
                 <div class="userData block">
-                    <p class="font-semibold my-4">
-                        Nome de exibição:
-                        <span class="font-normal">
-                            {{ $user->user_name ?? "Nome não definido" }}
-                        </span>
+                    <p class="font-semibold mt-3">
+                        Nome:
                     </p>
-                    <p class="font-semibold my-4">
-                        Nome completo:
-                        <span class="font-normal">
-                            {{ $user->name ?? "Nome não definido" }}
-                        </span>
+                    <span class="font-normal mb-3 ml-2">
+                        {{ $company->name ?? "Nome não definido" }}
+                    </span>
+                    <p class="font-semibold mt-3">
+                        E-mail:
                     </p>
-                    <p class="font-semibold my-4">
-                        Preferência de vaga:
-                        <span class="font-normal">
-                            {{ $user->job_preference ?? "Não definido" }}
-                        </span>
+                    <span class="font-normal mb-3 ml-2">
+                        {{ $company->email ?? "Nome não definido" }}
+                    </span>
+                    <p class="font-semibold mt-3">
+                        Cnpj:
                     </p>
-                    <p class="font-semibold my-4">
-                        Situação empregatícia:
-                        <span class="font-normal">
-                            {{ $user->current_situation ?? "Não definido" }}
-                        </span>
+                    <span class="font-norma mb-3 ml-2">
+                        {{ $company->cnpj ?? "Não definido" }}
+                    </span>
+                    <p class="font-semibold mt-3">
+                        Setor de atuação:
                     </p>
-                    <p class="font-semibold my-4">
-                        Cargo:
-                        <span class="font-normal">
-                            {{ $user->current_position ?? "Não definido" }}
-                        </span>
+                    <span class="font-normal mb-3 ml-2">
+                        {{ $company->sector ?? "Não definido" }}
+                    </span>
+                    <p class="font-semibold mt-3">
+                        Quantidade de funcionários:
                     </p>
-                    <p class="font-semibold my-4">
+                    <span class="font-normal mb-3 ml-2">
+                        {{ $company->employees_count ?? "Não definido" }}
+                    </span>
+                    <p class="font-semibold mt-3">
                         Local:
-                        <span class="font-normal">
-                            {{ $user->city->name ?? "Não definido" }}
-                            , {{ $user->state->state  ?? "Não definido" }}
-                            , {{ $user->country ?? "Não definido"}}
-                        </span>
                     </p>
-                    <p class="font-semibold my-4">
-                        Empresa:
-                        <span class="font-normal">
-                            {{ $user->company ?? "Não definido" }}
-                        </span>
+                    <span class="font-norma mb-3 ml-2">
+                        {{ $company->address }}
+                        ,{{ $company->city->name ?? "Não definido" }}
+                        , {{ $company->state->state  ?? "Não definido" }}
+                        , Brasil
+                    </span>
+                    <p class="font-semibold mt-3">
+                        Quantidade de currículos registrados:
                     </p>
+                    <span class="font-normal mb-3 ml-2">
+                        {{ $company->full_candidate_count ?? "Não definido" }}
+                    </span>
+                    <p class="font-semibold mt-3">
+                        Média salarial das vagas anúnciadas:
+                    </p>
+                    <span class="font-normal mb-3 ml-2">
+                        {{ $company->avgSalary ?? "Não definido" }}
+                    </span>
+                    <div class="mb-5">
+
+                    </div>
                 </div>
                 <form action="/user/config/update-user-data" method="post"
                 class="userDataUpdate hidden">
@@ -240,95 +246,6 @@
                     </div>
                 </form>
             </div>
-            <div class="border border-[#D7D7D7] my-6"></div>
-            <div class="">
-                <div class="pl-6">
-                    <h2 class="font-semibold text-lg">
-                        Currículo
-                    </h2>
-                    @if ($user->resume == null)
-                    <p class="text-sm p-3">
-                        Adicione um currículo para preencher candidaturas a 
-                        vagas de forma rápida.
-                    </p>
-                    @else
-                    <p class="text-sm p-3">
-                        Este é o currículo ao qual você pode utilizar para se candidatar a vagas
-                        de forma rápida.
-                    </p>
-                    @endif
-                </div>
-                @if ($user->resume == null)
-                <div class="flex items-center p-6 justify-center border-2 w-[90%] 
-                border-dashed border-[#222] rounded-md mx-auto my-4 mb-8 enviarCurriculo
-                hover:bg-slate-100 cursor-pointer">
-                    <span class="ResumefileUploader_svgContainer__NPJgc">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg" data-test="resume-section-upload-svg"><g id="Upload"><path id="download-24-solid" fill-rule="currentColor" clip-rule="currentColor" d="M28 21.334c.736 0 1.333.597 1.333 1.333V28c0 .737-.597 1.334-1.333 1.334H4A1.333 1.333 0 0 1 2.667 28v-5.333a1.333 1.333 0 1 1 2.666 0v4h21.334v-4c0-.736.596-1.333 1.333-1.333Zm-12 2.652c.736 0 1.333-.597 1.333-1.333V7.203l5.707 5.707a1.333 1.333 0 1 0 1.886-1.886l-7.967-7.966a1.33 1.33 0 0 0-.96-.39 1.33 1.33 0 0 0-.959.39l-7.966 7.966a1.333 1.333 0 1 0 1.885 1.886l5.707-5.707v15.45c0 .736.598 1.333 1.334 1.333Z" fill="currentColor"></path></g></svg></span>
-                        <div class="ml-3">
-                        <h3 class="heading_Heading__BqX5J heading_Level3__X81KK" aria-live="polite" aria-hidden="false" data-test="resume-section-filename" id="curriculo">
-                            Carregar currículo
-                        </h3>
-                        <small class="small_Small__0Prbr" aria-live="polite" 
-                        aria-hidden="false" data-test="resume-section-file-types">
-                            Use um arquivo PDF, PNG, JPG ou TXT.
-                        </small>
-                    </div>
-                </div>
-                <form action="/user/update-resume" method="post" enctype="multipart/form-data">
-                    @csrf
-                    @method("POST")
-                    <input accept=".pdf,.png,.jpg,.jpeg,.webp,.txt" 
-                    class="invisible" id="upload-resume" type="file" name="resume"
-                    onchange="updateResume()">
-                    <button type="submit" class="hidden update-resume"></button>
-                </form>
-                @else
-                <div class="flex items-center p-6 border-2 w-[90%] select-none
-                border-[#222] rounded-md mx-auto my-4 mb-8 enviarCurriculo">
-                    <svg fill="#000000" width="62" height="72" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" 
-                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve"
-                    class="">
-                        <g>
-                            <path d="M245,169.144c27.118,0,49.1-21.984,49.1-49.102S272.118,70.94,245,70.94c-27.118,0-49.104,21.984-49.104,49.102
-                                S217.882,169.144,245,169.144z M245,86.252c18.632,0,33.788,15.157,33.788,33.79c0,18.632-15.156,33.789-33.788,33.789
-                                s-33.791-15.157-33.791-33.789C211.208,101.41,226.368,86.252,245,86.252z"/>
-                            <path d="M195.234,180.425c0,0-49.766,0.664-49.766,46.448c0,45.784,0,56.401,0,56.401s96.873,0,97.206,0L195.234,180.425z
-                                    M160.781,226.873c0-20.502,14.669-27.52,25.216-29.915l32.752,71.003h-57.968V226.873z"/>
-                            <path d="M344.531,283.274c0,0,0-10.617,0-56.401c0-45.784-49.766-46.448-49.766-46.448l-47.444,102.849H344.531z M304.003,196.958
-                                c10.546,2.395,25.216,9.411,25.216,29.915v41.089h-57.971L304.003,196.958z"/>
-                            <polygon points="210.826,180.425 244.999,256.068 279.171,180.425 244.999,180.425 	"/>
-                            <path d="M367.5,0H53.594v490h382.813V76.563L367.5,0z M367.818,23.242l48.85,54.277h-48.85V23.242z M68.906,474.688V15.313h283.599
-                                v77.52h68.589v381.855H68.906z"/>
-                            <rect x="130.16" y="336.307" width="229.687" height="15.312"/>
-                            <rect x="130.16" y="375.44" width="229.687" height="15.313"/>
-                            <rect x="130.16" y="414.574" width="229.687" height="15.313"/>
-                        </g>
-                    </svg>
-                    <div class="mx-3 w-full">
-                        <h3 class="font-medium">
-                            Currículo cadastrado
-                        </h3>
-                        <div class="w-[50%] flex justify-between my-3">
-                            <small class="small_Small__0Prbr">
-                                <a href="{{ Storage::url($user->resume) }}" target="_blank" 
-                                    class="bg-blue-500 text-white p-1.5 rounded font-medium
-                                    hover:bg-blue-400">
-                                    Visualizar ou baixar
-                                </a>
-                            </small>
-                            <small class="small_Small__0Prbr">
-                                <a href="/user/profile/delete-resume"
-                                    class="bg-red-500 text-white p-1.5 rounded font-medium
-                                    hover:bg-red-400">
-                                    Excluir Currículo
-                                </a>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                @endif
-                
-            </div>
         </div>
     </div>
 </x-layout>
@@ -406,3 +323,4 @@
         );
     });
 </script>
+@dd(json_encode($company))

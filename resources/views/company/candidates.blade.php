@@ -144,4 +144,3 @@
     //     });
     // });
 </script>
-@dd($vaga, $candidates, $company)

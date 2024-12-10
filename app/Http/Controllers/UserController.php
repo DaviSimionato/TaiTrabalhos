@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Company;
+use App\Models\JobListing;
 use App\Models\User;
 use App\Models\State;
 use Illuminate\Http\Request;
@@ -112,6 +113,18 @@ class UserController extends Controller
         $user->state = State::find($user->state);
         if($user->type === "company") {
             $company = Company::where("user_id", $user->id)->first();
+            $listings = JobListing::where("company_id", $company->id)->get();
+            $full_candidate_count = 0; 
+            foreach($listings as $listing) {
+                $full_candidate_count+= intval($listing->candidate_count);
+            }
+            $salaries = $listings->map(function ($listing) {
+                $salary = str_replace(["R$", "."], "", $listing->salary);
+                $salary = str_replace(",", ".", $salary); 
+                return floatval($salary);
+            });
+            $company->avgSalary = "R$" . number_format($salaries->avg(), 2, ",", ".");
+            $company->full_candidate_count = $full_candidate_count;
             return view("company.profile", [
                 "user" => $user,
                 "company" => $company

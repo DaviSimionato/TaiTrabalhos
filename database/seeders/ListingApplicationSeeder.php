@@ -24,7 +24,7 @@ class ListingApplicationSeeder extends Seeder
             shuffle($shuffledUserIds);
 
             // Define quantos usuários vão se candidatar a essa vaga (entre 2 e 5)
-            $applications = rand(10, 15);
+            $applications = rand(10, 16);
 
             // Seleciona os primeiros $applications usuários embaralhados
             $selectedUsers = array_slice($shuffledUserIds, 0, $applications);
