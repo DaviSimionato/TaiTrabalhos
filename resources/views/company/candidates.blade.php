@@ -3,11 +3,11 @@
         <div class="w-[75%] border rounded-[10px] border-[#D7D7D7]">
             <div class="p-6">
                 <h1 class="text-2xl font-medium my-6">
-                    Vagas cadastradas
+                    Candidatos a vaga: {{ $vaga->title }}
                 </h1>
-                @if (empty($vagas))
+                @if (empty($candidates))
                     <h2 class="opacity-80 text-xl font-medium pt-8 text-center">
-                        Você não tem nenhuma vaga cadastrada
+                        Nenhum candidato cadastrado
                     </h2>
                 @endif
                 <div class="rounded border-[#7777] border p-3 flex items-center my-2">
@@ -16,11 +16,11 @@
                         {{$company->name}}
                     </p>
                 </div>
-                @foreach ($vagas as $vaga)
+                @foreach ($candidates as $candidate)
                 <div class="border-[#D7D7D7] border min-w-[300px] mb-4 
                 min-h-[80px] rounded-lg p-4 vaga-card">
                     <div class="flex items-center justify-between">
-                        <div class="w-[350px]">
+                        <div class="w-[750px]">
                             {{-- <p class="p-2 pb-0 font-medium text-lg">
                                 {{ $vaga->title }}
                             </p>
@@ -36,91 +36,53 @@
                                     {{ $vaga->releaseDate }}
                                 </p>
                             </div> --}}
-                            <div class="">
-                                <div class="flex items-center justify-between">
-                                    <p class="titulo font-semibold text-xl">
-                                        {{ $vaga->title }}
+                            <div class="flex items-center">
+                                <svg class="icon_Icon__ptI3R" width="80" height="80" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-live="polite" aria-hidden="false"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.8 28.8c0 13.255 10.745 24 24 24s24-10.745 24-24-10.745-24-24-24-24 10.745-24 24zm24 4.8a9.6 9.6 0 0 1-9.6-9.6 9.6 9.6 0 0 1 9.6-9.6 9.6 9.6 0 0 1 9.6 9.6 9.6 9.6 0 0 1-9.6 9.6zm15.252 12.147A22.716 22.716 0 0 1 28.8 51.6a22.715 22.715 0 0 1-15.252-5.853C16.213 39.992 22.04 36 28.8 36s12.587 3.992 15.252 9.747z" fill="#C4C7CC"></path></svg>
+                                <div class="mx-3">
+                                    <div class="flex items-center justify-between">
+                                        <p class="titulo font-semibold text-xl">
+                                            Nome:
+                                            <b class="text-lg font-medium">
+                                                {{ $candidate->name }}
+                                            </b>
+                                        </p>
+                                    </div>
+                                    <p class="my-1">
+                                        <b class="font-medium">contato:</b> <ablueblue class="mx-0.5"/>
+                                        {{ $candidate->email }}
+                                    </p>
+                                    <p class="my-1">
+                                        <b class="font-medium">Local:</b> <ablueblue class="mx-0.5"/>
+                                        {{ $candidate->city->name ?? "Não definido" }},
+                                        {{ $candidate->state->state ?? "Não definido" }}
                                     </p>
                                 </div>
-                                <p>
-                                    <b class="font-medium">Modalidade:</b> <ablueblue class="mx-0.5"/>
-                                    {{ $vaga->modality }}
-                                </p>
-                                <p>
-                                    <b class="font-medium">Forma de contratação:</b> <ablueblue class="mx-0.5"/>
-                                    {{ strtoupper($vaga->type) }}
-                                </p>
                             </div>
                         </div>
-                        <div class="">
-                            <p class="font-medium">
-                                Data de cadastro:
-                            </p>
-                            <p class="text-center">
-                                {{ $vaga->releaseDate }}
-                            </p>
-                        </div>
+                        
                         <div class="flex flex-col items-center justify-center w-[220px] mx-3 mr-6">
-                            <h2 class="text-base font-medium">
-                                Salário
-                            </h2>
                             <div class="flex items-center">
-                                <p class="text-[#00a264] text-lg font-semibold">
-                                    {{ $vaga->salary}}
-                                </p>
-                                <p class="text-sm font-medium ml-0.5">
-                                    /mês
-                                </p>
+                                @if ($candidate->resume != null)
+                                <small class="small_Small__0Prbr">
+                                    <a href="{{ Storage::url($candidate->resume) }}" target="_blank"  
+                                        class="bg-blue-500 text-white p-3 rounded font-medium
+                                        hover:bg-blue-400">
+                                        Ver currículo
+                                    </a>
+                                </small>
+                                @else
+                                <small class="small_Small__0Prbr">
+                                    <button  
+                                        class="bg-gray-400 text-white p-3 rounded font-medium">
+                                        Ver currículo
+                                    </button>
+                                </small>
+                                @endif
                             </div>
                             <p class="text-[#647380] text-sm font-semibold">
-                                {{ $vaga->city->name}}, 
-                                {{ $vaga->state->state}}
+                                
                             </p>
                         </div>
-                    </div>
-                    <p class="mt-1">
-                        <b class="font-medium">Descrição:</b>
-                    </p>
-                    <div class="px-2 line-clamp-3">
-                        <p class="opacity-80">
-                            {{ $vaga->description }}
-                        </p>
-                    </div>
-                    <div class="border border-[#D7D7D7] my-4"></div>
-                    <p class="text-center text-sm font-medium">
-                        Número de candidatos: {{ $vaga->candidate_count }}
-                    </p>
-                    <div class="border border-[#D7D7D7] my-4"></div>
-                    <div class="w-[60%] flex justify-between my-4 mt-8 mx-auto">
-                        <small class="small_Small__0Prbr">
-                            <a href="/candidatos/vaga/{{$vaga->id}}" 
-                                class="bg-blue-500 text-white p-3 rounded font-medium
-                                hover:bg-blue-400">
-                                Ver candidatos
-                            </a>
-                        </small>
-                        <small class="small_Small__0Prbr">
-                            <a href="/vaga/{{$vaga->id}}" target="_blank" 
-                                class="bg-green-500 text-white p-3 rounded font-medium
-                                hover:bg-green-400">
-                                Ver detalhes da vaga
-                            </a>
-                        </small>
-                        <small class="small_Small__0Prbr">
-                            <a href="/editar/vaga/{{$vaga->id}}" 
-                                class="bg-orange-500 text-white p-3 rounded font-medium
-                                hover:bg-orange-400">
-                                Editar vaga
-                            </a>
-                        </small>
-                        <small class="btnExcluir">
-                            <a class="bg-red-500 text-white p-3 rounded font-medium 
-                            hover:bg-red-400 cursor-pointer select-none">
-                                Excluir vaga
-                            </a>
-                            <a href="/deletar/vaga/{{ $vaga->id }}" 
-                            class="hidden excluir"></a>
-                        </small>
                     </div>
                 </div>
                 @endforeach
@@ -182,3 +144,4 @@
     //     });
     // });
 </script>
+@dd($vaga, $candidates, $company)

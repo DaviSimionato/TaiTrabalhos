@@ -16,6 +16,29 @@ use App\Models\ListingApplication;
 class VagasController extends Controller
 {
 
+    public function candidatosView(JobListing $listing, Request $request) {
+        $user = $request->user();
+        $company = Company::where("user_id", $user->id)->first();
+        if(!$company) {
+            return redirect("/");
+        }
+        $appliedListings = ListingApplication::where("job_listing_id", $listing->id)
+        ->orderByDesc("id")->get();
+        $candidates = [];
+        foreach($appliedListings as $listingApp) {
+            $lUser = User::find($listingApp->user_id);
+            $lUser->resume = $listingApp->resume;
+            $lUser->city = City::find($lUser->city);
+            $lUser->state = State::find($lUser->state);
+            array_push($candidates, $lUser);
+        }
+        return view("company.candidates", [
+            "company" => $company,
+            "candidates" => $candidates,
+            "vaga" => $listing
+        ]);
+    }
+
     public function cadastrarVagaView(Request $request) {
         $user = $request->user();
         $company = Company::where("user_id", $user->id)->first();
@@ -79,7 +102,68 @@ class VagasController extends Controller
             "vagas" => $vagas,
             "company" => $company
         ]);
+    }
 
+    public function editarVagaView(JobListing $listing, Request $request) {
+        $user = $request->user();
+        $company = Company::where("user_id", $user->id)->first();
+        if(!$company) {
+            return redirect("/");
+        }
+        $listing->city = City::find($listing->city_id);
+        $listing->state = State::find($listing->city->state_id);
+        $listing->company = $company;
+        $listing->salary = str_replace("R$", "", $listing->salary);
+        $listing->salary = str_replace(".", "", $listing->salary);
+        $listing->salary = str_replace(",", ".", $listing->salary);
+        $listing->salary = number_format(floatval($listing->salary), 2, ",", ".");
+        $listing->releaseDate = Carbon::parse($listing->created_at)->addHours(-3)->format("d/m/Y");
+        $user->city = City::find($company->city_id);
+        $user->state = State::find($company->state_id);
+        return view("company.edit-listing", [
+            "user" => $user,
+            "company" => $company,
+            "listing" => $listing
+        ]);
+    }
+
+    public function editarVaga(JobListing $listing, Request $request) {
+        $user = $request->user();
+        $company = Company::where("user_id", $user->id)->first();
+        if(!$company) {
+            return redirect("/");
+        }
+        $listing->title = $request->title;
+        $listing->description = $request->description;
+        $listing->modality = $request->modality;
+        $listing->type = $request->type;
+        $listing->salary = 'R$ ' . trim(preg_replace('/[^0-9.,]/', '', $request->salary));
+        $listing->benefits = $request->benefits;
+        $listing->tags = $request->tags;
+        $listing->city_id = $request->city_id;
+        $listing->update();
+        return redirect("/vaga/$listing->id")->with("message", "Vaga editada com sucesso!");
+    }
+
+    public function apagarVaga(JobListing $listing, Request $request) {
+        $user = $request->user();
+        $company = Company::where("user_id", $user->id)->first();
+        if(!$company) {
+            return redirect("/");
+        }
+        if($listing->company_id != $company->id) {
+            return redirect("/");
+        }
+        $favListing = FavoritedListing::where("job_listing_id", $listing->id)->get();
+        $apliedListing = ListingApplication::where("job_listing_id", $listing->id)->get();
+        foreach($favListing as $l) {
+            $l->delete();
+        }
+        foreach($apliedListing as $l) {
+            $l->delete();
+        }
+        $listing->delete();
+        return redirect("/vagas-cadastradas")->with("message", "Vaga deletada com sucesso!");
     }
 
     public function vaga(Request $request, JobListing $listing) {
@@ -170,11 +254,12 @@ class VagasController extends Controller
         $listings = ListingApplication::where("user_id", $user->id)->get();
         $vagas = [];
         foreach($listings as $listing) {
-            $listing = JobListing::where("id", $listing->job_listing_id)->first();
-            $listing->city = City::find($listing->city_id);
-            $listing->state = State::find($listing->city->state_id);
-            $listing->company = Company::find($listing->company_id);
-            array_push($vagas, $listing);
+            $listingData = JobListing::where("id", $listing->job_listing_id)->first();
+            $listingData->city = City::find($listingData->city_id);
+            $listingData->state = State::find($listingData->city->state_id);
+            $listingData->company = Company::find($listingData->company_id);
+            $listingData->resume = $listing->resume;
+            array_push($vagas, $listingData);
         }
         return view("user.applied-listings", [
             "user" => $user,

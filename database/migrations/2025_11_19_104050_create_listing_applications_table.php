@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete("restrict");
             $table->foreignId('job_listing_id')->constrained()->onDelete("restrict");
-            $table->string('resume');
+            $table->string('resume')->nullable();
             $table->timestamps();
         });
     }

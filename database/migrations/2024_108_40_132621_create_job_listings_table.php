@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->text('modality')->default("Presencial");
-            $table->enum('type', ['clt', 'pj', 'temporary'])->nullable();
+            $table->enum('type', ['CLT', 'PJ', 'Temporario'])->nullable();
             $table->string('salary')->nullable();
             $table->text('benefits')->nullable();
             $table->text('tags')->nullable();

@@ -22,7 +22,7 @@
                 vaga-card id-{{$vaga->id}}">
                     <div class="flex items-center">
                         <img src="{{ asset($vaga->company->logo) }}" alt="logo" 
-                        width="32" class="rounded">
+                        width="32" class="rounded max-h-[52px]">
                         <p class="ml-2">
                             {{ $vaga->company->name }}
                         </p>
@@ -62,7 +62,7 @@
                     <div class="vagaDescription">
                         <div class="flex items-center">
                             <img src="{{asset($vaga->company->logo)}}" alt="logo" 
-                            width="40" class="rounded-lg">
+                            width="40" class="rounded-lg max-h-[60px]">
                             <p class="ml-1.5 text-lg font-medium">
                                 {{ $vaga->company->name }}
                             </p>

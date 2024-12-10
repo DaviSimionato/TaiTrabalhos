@@ -35,6 +35,10 @@ Route::middleware("auth")->group(function () {
     Route::get("/cadastrar-vaga", [VagasController::class, "cadastrarVagaView"]);
     Route::post("/cadastrar-vaga", [VagasController::class, "cadastrarVaga"]);
     Route::get("/vagas-cadastradas", [VagasController::class, "vagasCadastradasView"]);
+    Route::get("/editar/vaga/{listing}", [VagasController::class, "editarVagaView"]);
+    Route::post("/editar/vaga/{listing}", [VagasController::class, "editarVaga"]);
+    Route::get("/deletar/vaga/{listing}", [VagasController::class, "apagarVaga"]);
+    Route::get("/candidatos/vaga/{listing}", [VagasController::class, "candidatosView"]);
     Route::get("/user/favorite-listing/{listing}", [VagasController::class, "favoriteListing"]);
     Route::get("/user/remove-favorite-listing/{listing}", [VagasController::class, "removeFavoriteListing"]);
     Route::get("/user/profile/delete-application/{listing}", [VagasController::class, "deleteListingApplication"]);

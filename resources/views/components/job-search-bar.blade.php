@@ -57,7 +57,7 @@
                 Cadastrar uma vaga
             </a>
             @if ($company->listingCount > 0)
-            <a href="/cadastrar-vaga" class="text-center p-2.5 border-2 rounded border-[#7777] 
+            <a href="/vagas-cadastradas" class="text-center p-2.5 border-2 rounded border-[#7777] 
             my-3 hover:border-tt hover:bg-blue-400 hover:text-white">
                 Ver suas vagas cadastradas
             </a>

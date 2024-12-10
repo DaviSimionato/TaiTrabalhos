@@ -21,7 +21,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 8.000,00',
             'benefits' => 'Vale transporte, Vale refeição, Plano de saúde, Seguro de vida, Auxílio home office',
             'tags' => 'PHP, Laravel, API, Backend, MySQL, Segurança',
-            'candidate_count' => 12,
+            'candidate_count' => 0,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -34,7 +34,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 7.000,00',
             'benefits' => 'Plano de saúde, Vale refeição, Flexibilidade de horário, Participação nos lucros',
             'tags' => 'React, JavaScript, CSS, Frontend, UI/UX',
-            'candidate_count' => 23,
+            'candidate_count' => 0,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -47,7 +47,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 9.000,00',
             'benefits' => 'Vale transporte, Plano de saúde, Participação nos lucros, Auxílio educação',
             'tags' => 'Flutter, Mobile, Desenvolvimento, Dart, Cross-Platform',
-            'candidate_count' => 35,
+            'candidate_count' => 0,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -60,7 +60,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 12.000,00',
             'benefits' => 'Vale refeição, Plano de saúde, Seguro odontológico, Auxílio educação',
             'tags' => 'Fullstack, React, Node.js, Segurança, AWS',
-            'candidate_count' => 41,
+            'candidate_count' => 0,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -73,7 +73,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 13.500,00',
             'benefits' => 'Plano de saúde, Vale refeição, Auxílio home office, Participação nos lucros',
             'tags' => 'Engenharia de Software, Cloud, AWS, DevOps, Kubernetes',
-            'candidate_count' => 60,
+            'candidate_count' => 0,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -86,7 +86,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 7.500,00',
             'benefits' => 'Vale refeição, Plano de saúde, Vale transporte, Seguro de vida',
             'tags' => 'Python, Backend, Dados, Machine Learning, Flask',
-            'candidate_count' => 42,
+            'candidate_count' => 0,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -99,7 +99,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 8.000,00',
             'benefits' => 'Plano de saúde, Vale refeição, Auxílio transporte',
             'tags' => 'Node.js, Backend, APIs, JavaScript',
-            'candidate_count' => 32,
+            'candidate_count' => 0,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -112,7 +112,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 10.000,00',
             'benefits' => 'Vale transporte, Vale refeição, Plano de saúde, Seguro odontológico',
             'tags' => 'Java, Backend, Spring Boot, Microservices',
-            'candidate_count' => 56,
+            'candidate_count' => 0,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -125,7 +125,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 9.500,00',
             'benefits' => 'Plano de saúde, Vale refeição, Seguro de vida',
             'tags' => 'Unity, C#, Desenvolvimento de Jogos',
-            'candidate_count' => 29,
+            'candidate_count' => 0,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -138,7 +138,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 14.000,00',
             'benefits' => 'Vale transporte, Plano de saúde, Participação nos lucros, Seguro odontológico',
             'tags' => 'Arquitetura de Software, Cloud, DevOps, Infraestrutura',
-            'candidate_count' => 10,
+            'candidate_count' => 0,
             'city_id' => 5005,
             'company_id' => 1,
         ]);
@@ -151,7 +151,7 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 5.000,00',
             'benefits' => 'Plano de saúde, Vale refeição, Flexibilidade de horário, Participação nos lucros',
             'tags' => 'React, JavaScript, CSS, Frontend, UI/UX',
-            'candidate_count' => 23,
+            'candidate_count' => 0,
             'city_id' => 5005,
             'company_id' => 2,
         ]);
@@ -164,9 +164,269 @@ class JobListingSeeder extends Seeder
             'salary' => 'R$ 3.600,00',
             'benefits' => 'Vale transporte, Plano de saúde, Participação nos lucros, Auxílio educação',
             'tags' => 'Flutter, Mobile, Desenvolvimento, Dart, Cross-Platform',
-            'candidate_count' => 35,
+            'candidate_count' => 0,
             'city_id' => 5005,
             'company_id' => 2,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Administrador de Banco de Dados',
+            'description' => 'Procuramos um administrador de banco de dados com experiência em otimização de consultas SQL e gestão de bases de dados relacionais. Este profissional será responsável por garantir a integridade e segurança dos dados.',
+            'modality' => 'Presencial',
+            'type' => 'CLT',
+            'salary' => 'R$ 9.000,00',
+            'benefits' => 'Plano de saúde, Seguro de vida, Vale refeição, Participação nos lucros',
+            'tags' => 'SQL, Banco de Dados, DBA, Segurança da Informação',
+            'candidate_count' => 0,
+            'city_id' => 5006,
+            'company_id' => 2,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Engenheiro de Dados',
+            'description' => 'Estamos contratando um engenheiro de dados para criar pipelines de dados e integrar sistemas. Necessário conhecimento em Apache Spark e bancos de dados NoSQL.',
+            'modality' => 'Remoto',
+            'type' => 'PJ',
+            'salary' => 'R$ 13.000,00',
+            'benefits' => 'Auxílio home office, Plano de saúde, Seguro de vida',
+            'tags' => 'Engenharia de Dados, Spark, NoSQL, ETL, Python',
+            'candidate_count' => 0,
+            'city_id' => 5007,
+            'company_id' => 1,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Especialista em Cloud Computing',
+            'description' => 'Procuramos um especialista em cloud computing para gerenciar e otimizar nossa infraestrutura em nuvem. É necessário conhecimento em AWS e arquitetura de microservices.',
+            'modality' => 'Híbrido',
+            'type' => 'CLT',
+            'salary' => 'R$ 15.000,00',
+            'benefits' => 'Plano de saúde, Vale refeição, Seguro de vida',
+            'tags' => 'Cloud, AWS, DevOps, Microservices',
+            'candidate_count' => 0,
+            'city_id' => 5005,
+            'company_id' => 3,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Desenvolvedor Kotlin',
+            'description' => 'Estamos contratando um desenvolvedor Kotlin para criar aplicativos nativos para Android. Necessário experiência em integração de APIs e padrões de design mobile.',
+            'modality' => 'Remoto',
+            'type' => 'PJ',
+            'salary' => 'R$ 8.000,00',
+            'benefits' => 'Auxílio home office, Seguro de vida, Participação nos lucros',
+            'tags' => 'Kotlin, Android, Mobile, APIs',
+            'candidate_count' => 0,
+            'city_id' => 5008,
+            'company_id' => 2,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Analista de Segurança da Informação',
+            'description' => 'Buscamos um analista de segurança da informação com conhecimento em práticas de pentest e gerenciamento de riscos de TI. Este profissional será responsável por proteger os sistemas da empresa.',
+            'modality' => 'Presencial',
+            'type' => 'CLT',
+            'salary' => 'R$ 11.000,00',
+            'benefits' => 'Plano de saúde, Seguro de vida, Vale refeição, Participação nos lucros',
+            'tags' => 'Segurança, Pentest, Riscos, TI',
+            'candidate_count' => 0,
+            'city_id' => 5009,
+            'company_id' => 3,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Product Owner',
+            'description' => 'Procuramos um Product Owner para liderar o desenvolvimento de produtos digitais. É necessário experiência em metodologias ágeis e gestão de stakeholders.',
+            'modality' => 'Híbrido',
+            'type' => 'CLT',
+            'salary' => 'R$ 10.500,00',
+            'benefits' => 'Plano de saúde, Seguro de vida, Vale refeição, Participação nos lucros',
+            'tags' => 'Product Owner, Scrum, Gestão de Produtos',
+            'candidate_count' => 0,
+            'city_id' => 5005,
+            'company_id' => 1,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Gerente de Projetos',
+            'description' => 'Estamos contratando um gerente de projetos para liderar equipes multidisciplinares. É necessário conhecimento em ferramentas como Jira e MS Project.',
+            'modality' => 'Presencial',
+            'type' => 'CLT',
+            'salary' => 'R$ 12.000,00',
+            'benefits' => 'Plano de saúde, Vale refeição, Seguro de vida',
+            'tags' => 'Gerente, Projetos, Scrum, PMO',
+            'candidate_count' => 0,
+            'city_id' => 5006,
+            'company_id' => 2,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Desenvolvedor Frontend Vue.js',
+            'description' => 'Buscamos um desenvolvedor frontend com experiência em Vue.js para criar interfaces dinâmicas e responsivas. Conhecimento em Tailwind CSS é um diferencial.',
+            'modality' => 'Remoto',
+            'type' => 'PJ',
+            'salary' => 'R$ 6.000,00',
+            'benefits' => 'Flexibilidade de horário, Auxílio home office',
+            'tags' => 'Vue.js, Frontend, Tailwind CSS',
+            'candidate_count' => 0,
+            'city_id' => 5007,
+            'company_id' => 1,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Analista de Infraestrutura',
+            'description' => 'Procuramos um analista de infraestrutura com conhecimento em redes, servidores e virtualização. Este profissional será responsável por garantir a operação dos sistemas da empresa.',
+            'modality' => 'Híbrido',
+            'type' => 'CLT',
+            'salary' => 'R$ 8.000,00',
+            'benefits' => 'Plano de saúde, Vale refeição, Seguro de vida',
+            'tags' => 'Infraestrutura, Redes, Servidores, Virtualização',
+            'candidate_count' => 0,
+            'city_id' => 5010,
+            'company_id' => 3,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Especialista em Redes',
+            'description' => 'Estamos contratando um especialista em redes para gerenciar e monitorar redes corporativas. Necessário conhecimento em Cisco e segurança de redes.',
+            'modality' => 'Presencial',
+            'type' => 'CLT',
+            'salary' => 'R$ 9.000,00',
+            'benefits' => 'Plano de saúde, Seguro de vida, Vale refeição',
+            'tags' => 'Redes, Cisco, Segurança',
+            'candidate_count' => 0,
+            'city_id' => 5005,
+            'company_id' => 1,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Desenvolvedor Blockchain',
+            'description' => 'Procuramos um desenvolvedor com experiência em contratos inteligentes e plataformas blockchain como Ethereum. É necessário conhecimento em Solidity.',
+            'modality' => 'Remoto',
+            'type' => 'PJ',
+            'salary' => 'R$ 20.000,00',
+            'benefits' => 'Auxílio home office, Seguro de vida',
+            'tags' => 'Blockchain, Solidity, Smart Contracts',
+            'candidate_count' => 0,
+            'city_id' => 5011,
+            'company_id' => 2,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Analista de Suporte Técnico',
+            'description' => 'Buscamos um analista de suporte técnico para auxiliar clientes na resolução de problemas técnicos. Necessário conhecimento básico em TI e atendimento ao cliente.',
+            'modality' => 'Presencial',
+            'type' => 'CLT',
+            'salary' => 'R$ 3.500,00',
+            'benefits' => 'Vale transporte, Vale refeição, Plano de saúde',
+            'tags' => 'Suporte, Atendimento, TI',
+            'candidate_count' => 0,
+            'city_id' => 5005,
+            'company_id' => 3,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Engenheiro de Software Frontend',
+            'description' => 'Estamos em busca de um engenheiro de software frontend com foco em Angular para trabalhar em projetos escaláveis. Experiência em RxJS é um diferencial.',
+            'modality' => 'Remoto',
+            'type' => 'PJ',
+            'salary' => 'R$ 10.000,00',
+            'benefits' => 'Flexibilidade de horário, Seguro de vida',
+            'tags' => 'Frontend, Angular, RxJS',
+            'candidate_count' => 0,
+            'city_id' => 5010,
+            'company_id' => 1,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Engenheiro de Software Backend',
+            'description' => 'Procuramos um engenheiro backend com experiência em Go e arquitetura de microservices para criar sistemas de alta performance.',
+            'modality' => 'Híbrido',
+            'type' => 'CLT',
+            'salary' => 'R$ 11.000,00',
+            'benefits' => 'Plano de saúde, Vale refeição, Seguro de vida',
+            'tags' => 'Go, Backend, Microservices',
+            'candidate_count' => 0,
+            'city_id' => 5006,
+            'company_id' => 3,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Analista de Dados',
+            'description' => 'Buscamos um analista de dados com experiência em SQL, Power BI e Python para criar relatórios, dashboards e insights estratégicos para a tomada de decisão. O profissional será responsável por trabalhar com grandes volumes de dados e colaborar com equipes de diferentes áreas.',
+            'modality' => 'Híbrido',
+            'type' => 'CLT',
+            'salary' => 'R$ 6.500,00',
+            'benefits' => 'Plano de saúde, Vale refeição, Participação nos lucros, Seguro de vida',
+            'tags' => 'Dados, SQL, Python, Power BI, BI',
+            'candidate_count' => 0,
+            'city_id' => 5005,
+            'company_id' => 2,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Engenheiro de Machine Learning',
+            'description' => 'Estamos contratando um engenheiro de machine learning para construir e treinar modelos preditivos avançados. Necessário conhecimento em frameworks como TensorFlow e PyTorch, além de habilidades em análise de dados e algoritmos de IA.',
+            'modality' => 'Remoto',
+            'type' => 'PJ',
+            'salary' => 'R$ 15.000,00',
+            'benefits' => 'Plano de saúde, Auxílio home office, Participação nos lucros',
+            'tags' => 'Machine Learning, IA, TensorFlow, PyTorch, Big Data',
+            'candidate_count' => 0,
+            'city_id' => 5005,
+            'company_id' => 1,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Administrador de Sistemas',
+            'description' => 'Procuramos um administrador de sistemas com experiência em Linux, gerenciamento de servidores e segurança da informação. O profissional será responsável por garantir a estabilidade e segurança dos ambientes de TI.',
+            'modality' => 'Presencial',
+            'type' => 'CLT',
+            'salary' => 'R$ 7.000,00',
+            'benefits' => 'Vale transporte, Plano de saúde, Seguro de vida, Auxílio educação',
+            'tags' => 'Linux, Servidores, Segurança da Informação, Redes',
+            'candidate_count' => 0,
+            'city_id' => 5005,
+            'company_id' => 3,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Desenvolvedor Ruby on Rails',
+            'description' => 'Buscamos um desenvolvedor Ruby on Rails com experiência em desenvolvimento ágil para criar aplicações web de alta performance. Necessário conhecimento em banco de dados e metodologias ágeis.',
+            'modality' => 'Remoto',
+            'type' => 'PJ',
+            'salary' => 'R$ 9.500,00',
+            'benefits' => 'Plano de saúde, Auxílio home office, Flexibilidade de horário',
+            'tags' => 'Ruby on Rails, Desenvolvimento Web, Agile, PostgreSQL',
+            'candidate_count' => 0,
+            'city_id' => 5005,
+            'company_id' => 2,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Designer UX/UI',
+            'description' => 'Estamos em busca de um designer UX/UI criativo para projetar interfaces de usuário inovadoras. É necessário conhecimento em ferramentas como Figma, Adobe XD e habilidades em design responsivo.',
+            'modality' => 'Híbrido',
+            'type' => 'CLT',
+            'salary' => 'R$ 6.000,00',
+            'benefits' => 'Plano de saúde, Vale refeição, Seguro de vida, Auxílio transporte',
+            'tags' => 'UX, UI, Design, Figma, Adobe XD',
+            'candidate_count' => 0,
+            'city_id' => 5005,
+            'company_id' => 1,
+        ]);
+        
+        JobListing::create([
+            'title' => 'Especialista em DevOps',
+            'description' => 'Procuramos um especialista em DevOps com experiência em CI/CD, Kubernetes e infraestrutura como código. Será responsável por implementar pipelines automatizados e otimizar a infraestrutura de aplicações.',
+            'modality' => 'Remoto',
+            'type' => 'PJ',
+            'salary' => 'R$ 12.000,00',
+            'benefits' => 'Plano de saúde, Participação nos lucros, Seguro de vida',
+            'tags' => 'DevOps, CI/CD, Kubernetes, Terraform, AWS',
+            'candidate_count' => 0,
+            'city_id' => 5005,
+            'company_id' => 3,
         ]);
     }
 }
